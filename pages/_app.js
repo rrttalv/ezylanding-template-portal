@@ -1,7 +1,19 @@
-import "../scss/style.scss"
+import App from 'next/app';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, props }) => {
+    return (
+        <div className="MyApp">
+            <p>_app.js file</p>
+            <Component {...props} />
+        </div>
+    );
+};
 
-export default MyApp
+MyApp.getInitialProps = async (appContext) => {
+    // calls page's `getInitialProps` and fills `appProps.pageProps`
+    const appProps = await App.getInitialProps(appContext);
+
+    return { ...appProps };
+};
+
+export default App;
