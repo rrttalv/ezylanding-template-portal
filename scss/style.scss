@@ -1,5 +1,7 @@
 @import "_vars.scss";
 @import "_header.scss";
+@import "_templates.scss";
+@import "_varia.scss";
 @import "_sections.scss";
 
 html {
@@ -44,7 +46,15 @@ body > div {
 .layout {
   height: 100%;
   &_content {
-    height: 100%;
+    min-height: 100%;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: inherit;
   }
 }
 
@@ -76,10 +86,41 @@ body > div {
   color: var(--dim-gray);
 }
 
+.btn-bordered {
+  all: unset;
+  border: 2px solid rgb(var(--dark));
+  all: unset;
+  border: 2px solid rgb(var(--dark));
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .text-white {
   color: var(--white);
 }
 
+.card-shadow {
+  box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.05);
+}
+
 .text-orange-red {
   color: var(--orange-red);
+}
+
+.form-control {
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.04);
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgba(var(--secondary-rgb), 0.25);
+    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.09);
+  }
+}
+
+.form-control.large-input {
+  padding: 0.5rem 1rem;
+  font-size: 18px;
 }

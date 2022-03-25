@@ -77,10 +77,18 @@
       font-weight: 400;
     }
   }
+  .section-text-wrapper.center {
+    align-items: center;
+  }
 }
 
 .row {
   max-width: 1400px;
   padding: 0 3rem;
   margin: 0 auto;
+}
+
+.large-row {
+  max-width: 1500px;
+  padding: 0 1rem;
 }

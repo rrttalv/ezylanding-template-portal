@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const ItemSchema = new Schema({
   name: {
@@ -17,4 +18,4 @@ const ItemSchema = new Schema({
 
 const StripeItem = mongoose.model('StripeItem', ItemSchema)
 
-export default StripeItem
+module.exports = { StripeItem }
