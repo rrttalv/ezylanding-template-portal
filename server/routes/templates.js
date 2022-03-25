@@ -1,5 +1,6 @@
 const express = require("express");
-const { getTemplateAssetS3Url } = require("../helpers.js/aws");
+const { getTemplateAssetS3Url, getTemplateFromS3 } = require("../helpers/aws");
+const { compileTemplatePage } = require("../helpers/html");
 const router = express.Router();
 const { Template } = require('../models/Template')
 const { StripeItem } = require('../models/StripeItem')
@@ -18,14 +19,18 @@ function routes(app) {
     return app.render(req, res, "/templates", { id: req.params.id });
   })
 
-  router.get('/template-preview/:id/:route', async (req, res) => {
+  router.get('/template-preview/:id/:route?', async (req, res) => {
     const { id, route } = req.params
-    if(!route){
-      //send the homepage
-    }else{
-      //send another page
+    const dbTemplate = await Template.findOne({ _id: id }).lean()
+    if(!dbTemplate){
+      res.writeHead(301, { Location: '/' })
+      return res.end()
     }
-    res.send('Template preview yes?')
+    const template = await getTemplateFromS3(dbTemplate.templateId)
+    const targetRoute = route ? '/' + route : '/'
+    const strTemplate = compileTemplatePage(dbTemplate.frameworkId, template, id, targetRoute)
+    res.set('Content-Type', 'text/html')
+    res.send(new Buffer(strTemplate))
   })
 
   router.get('/template-item/:id', async (req, res) => {
@@ -35,7 +40,7 @@ function routes(app) {
     const template = {
       ...dbTemplate,
       fullThumbnail: getTemplateAssetS3Url(`templates/${dbTemplate.templateId}_preview`, 'png'),
-      previewURL: `${process.env.APP_URL}/templates/template-preview/${id}/home`,
+      previewURL: `${process.env.APP_URL}/templates/template-preview/${id}/`,
       priceRange
     }
     res.json({ template })
