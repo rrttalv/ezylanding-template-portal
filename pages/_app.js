@@ -1,9 +1,10 @@
 import App from 'next/app';
+import 'bootstrap/dist/css/bootstrap.css'
+import '../scss/style.scss'
 
 const MyApp = ({ Component, props }) => {
     return (
         <div className="MyApp">
-            <p>_app.js file</p>
             <Component {...props} />
         </div>
     );

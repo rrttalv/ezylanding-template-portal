@@ -1,6 +1,85 @@
 @import "_vars.scss";
 @import "_header.scss";
+@import "_sections.scss";
 
-nav {
-  padding: 1rem;
+html {
+  height: 100%;
+}
+
+body {
+  color: #252525;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8f8f8;
+}
+
+:root {
+  --insert-bg: rgba(62, 227, 197, 0.6);
+  --dark: 37, 37, 37;
+  --white: rgba(255, 255, 255, 1);
+  --secondary: rgba(62, 227, 197, 1);
+  --dim-gray: rgba(105, 105, 105, 1);
+  --light-gray: rgba(185, 185, 185, 1);
+  --purple: rgba(135, 62, 227, 1);
+  --purple-rgb: 135, 62, 227;
+  --light: rgba(250, 250, 250, 1);
+  --light-rgb: 230, 230, 230;
+  --light-gray-rgb: 185, 185, 185;
+  --dim-gray-rgb: 105, 105, 105;
+  --orange-red: rgba(255, 87, 33, 1);
+  --orange-red-rgb: 255, 87, 33;
+  --main: rgba(113, 118, 236, 1);
+  --secondary-rgb: 62, 227, 197;
+}
+
+body > div {
+  height: 100%;
+}
+
+.layout {
+  height: 100%;
+  &_content {
+    height: 100%;
+  }
+}
+
+.text-main {
+  color: var(--main)!important;
+}
+
+.bg-main {
+  background: var(--main);
+}
+
+.bg-purple {
+  background: var(--purple);
+}
+
+.text-secondary {
+  color: var(--secondary)!important;
+}
+
+.text-secondary.light {
+  color: rgb(94, 255, 224)!important;
+}
+
+.text-light {
+  color: var(--light);
+}
+
+.text-gray {
+  color: var(--dim-gray);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.text-orange-red {
+  color: var(--orange-red);
 }

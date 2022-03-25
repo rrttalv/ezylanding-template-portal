@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const TemplateSchema = new Schema({
   user: {
@@ -52,12 +53,4 @@ const TemplateSchema = new Schema({
 
 const Template = mongoose.model('Template', TemplateSchema)
 
-export const createTemplate = async (user, templateId, frameworkId) => {
-  return await Template.create({
-    user,
-    templateId,
-    frameworkId
-  })
-}
-
-export default Template
+module.exports = { Template }

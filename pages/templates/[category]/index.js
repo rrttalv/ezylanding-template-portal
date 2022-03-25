@@ -9,8 +9,8 @@ const TemplateList = ({ category }) => {
   )
 }
 
-TemplateList.getInitialProps = async ({ query: { id }}) => {
-  return { category: id }
+TemplateList.getInitialProps = async ({ query: { category }}) => {
+  return { category }
 }
 
 export default TemplateList
