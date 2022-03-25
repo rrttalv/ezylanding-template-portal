@@ -1,7 +1,6 @@
-import mongoose, { Schema } from 'mongoose'
-import bcrypt from 'bcryptjs'
-import dotenv from 'dotenv'
-dotenv.config()
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcryptjs')
 
 const UserSchema = new Schema({
   email: {
@@ -34,35 +33,13 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('User', UserSchema)
 
-export const createUser = async (email, rawPassword) => {
-  const password = await bcrypt.hashSync(rawPassword)
-  return await User.create({
-    email: email,
-    password
-  })
+const createUser = async (email, customerId) => {
+  return await User.create({ email, customerId })
 }
 
-export const findOrCreateOauth = async (email, googleId = null, twitterId = null, githubId = null) => {
-  let user = null
-  if(googleId){
-    user = await User.findOne({ googleId })
-  }
-  if(twitterId){
-    user = await User.findOne({ twitterId })
-  }
-  if(githubId){
-    user = await User.findOne({ githubId })
-  }
-  if(user){
-    return user
-  }else{
-    return await User.create({
-      email,
-      googleId,
-      twitterId,
-      githubId
-    })
-  }
+const setUserPassword = async (userId, password) => {
+  const password = await bcrypt.hash(password)
+  return await User.updateOne({ _id: userId }, { $set: { password } })
 }
 
-export default User
+module.exports = { User, createUser }

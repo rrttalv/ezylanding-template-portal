@@ -57,8 +57,8 @@ const Templates = (props) => {
             templates.map((item, idx) => {
               const templateProps = { ...item, priceRange }
               return (
-                <div className="col-md-12 col-lg-4">
-                  <div key={item._id} className="template-item">
+                <div key={item._id} className="col-md-12 col-lg-4">
+                  <div className="template-item">
                     <Template {...templateProps} />
                   </div>
                 </div>
@@ -73,7 +73,7 @@ const Templates = (props) => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/templates/templates-list`)
+  const res = await fetch(`${process.env.APP_URL}/templates/templates-list`)
   const { templates, priceRange } = await res.json()
   return { props: { templates, priceRange } }
 }

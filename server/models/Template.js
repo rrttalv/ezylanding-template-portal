@@ -13,6 +13,9 @@ const TemplateSchema = new Schema({
   frameworkId: {
     type: String
   },
+  description: {
+    type: String
+  },
   publicTemplate: {
     type: Boolean,
     default: false

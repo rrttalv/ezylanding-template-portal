@@ -1,16 +1,81 @@
 import React, { Component } from 'react';
+import Layout from '../../../components/Layout';
+import moment from 'moment'
+import Link from 'next/link';
 
-const TemplateList = ({ category }) => {
+const TemplateItem = (props) => {
+
+  const { template } = props
+
+  const { title, fullThumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt } = template
+
+  const getRow = (title, value, includeTitle = true, valueClass = '') => (
+    <div className='template-meta_row'>
+      {
+        includeTitle ? (
+          <span className='template-meta_row_subtitle'>
+            {title}:
+          </span>
+        )
+        :
+        undefined
+      }
+      <span className={`template-meta_row_value${valueClass ? ' ' + valueClass : ''}`}>
+        {value}
+      </span>
+    </div>
+  )
+
+  const getButtonsRow = () => (
+    <div className='template-meta_row buttons'>
+      <Link href={previewURL}>
+        <a title={`${title} HTML template preview page`}>
+          <button className='btn-bordered'>
+            Preview
+          </button>
+        </a>
+      </Link>
+      <button className='btn-bordered'>
+        Buy
+      </button>
+    </div>
+  )
 
   return (
-    <div>
-      <h1>{category} Templates</h1>
-    </div>
+    <Layout>
+      <section className='container-fluid template-view'>
+        <div className='row'>
+          <div className='col-12'>
+            <h2 className='title'>{template.title}</h2>
+            <p className='description'>
+              {description}
+            </p>
+          </div>
+          <div className='col-lg-8 order-2 order-lg-1 col-md-12'>
+            <div className='template-preview'>
+              <img className='template-preview_full' src={fullThumbnail} alt={altTag ? altTag : `Full ${title} template preview picture`} />
+            </div>
+          </div>
+          <div className='col-lg-4 order-1 order-lg-2 col-md-12 meta-col'>
+            <div className='template-meta card-shadow'>
+              {getRow('Framework', frameworkId)}
+              {getRow('Total pages', pageLength)}
+              {getRow('Created', moment(createdAt).format('DD/MM/YYYY'))}
+              {getRow('Last updated', moment(updatedAt).format('DD/MM/YYYY'))}
+              {getRow('', '#' + tags.join(' #'), false, 'tag-list')}
+              {getButtonsRow()}
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
   )
 }
 
-TemplateList.getInitialProps = async ({ query: { category }}) => {
-  return { category }
+export const getServerSideProps = async ({ query: { category } }) => {
+  const res = await fetch(`${process.env.APP_URL}/templates/template-item/${category}`)
+  const { template } = await res.json()
+  return { props: { template } }
 }
 
-export default TemplateList
+export default TemplateItem
