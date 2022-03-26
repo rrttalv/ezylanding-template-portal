@@ -4,8 +4,12 @@ const { compileTemplatePage } = require("../helpers/html");
 const router = express.Router();
 const { Template } = require('../models/Template')
 const { StripeItem } = require('../models/StripeItem')
+const { StripePurchase, createPurchase, completePurchase } = require('../models/StripePurchase')
+const { User, createUser } = require('../models/User')
+const stripeLib = require('stripe')
 
 function routes(app) {
+  const stripe = stripeLib(process.env.STRIPE_SECRET)
   
   const getPriceRange = async () => {
     const items = await StripeItem.find(({ tag: { $in: ['single-raw', 'single-webpack' ] } }))
@@ -15,8 +19,44 @@ function routes(app) {
     return priceRange
   }
 
-  router.get("/template/:id", (req, res) => {
-    return app.render(req, res, "/templates", { id: req.params.id });
+  router.post('/payment-intent', async(req, res) => {
+    try{
+      const { templateTag, email, templateId } = req.body
+      let user = await User.findOne({ email })
+      let customerId = null
+      if((user && !user.stripeCustomerId) || !user){
+        const customer = await stripe.customers.create({
+          email
+        })
+        customerId = customer.id
+      }
+      if(!user){
+        user = await createUser(email, customerId)
+      }
+      const item = await StripeItem.findOne({ tag: templateTag })
+      if(!item){
+        return res.status(400).json({ status: false, message: 'Invalid product selected, please contact support' })
+      }
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: item.price,
+        currency: 'usd',
+        customer: customerId,
+        automatic_payment_methods: {
+          enabled: true,
+        },
+        metadata: {
+          'price_id': item.stripeId,
+          'purchase_price': item.price,
+          'user_id': user._id
+        }
+      })
+      const { id: paymentIntentId, client_secret: clientSecret } = paymentIntent
+      const purchase = await createPurchase(user._id, customerId, paymentIntentId, clientSecret, templateTag, item.price, templateId)
+      return res.json({ status: true, clientSecret, paymentIntentId, purchaseId: purchase._id })
+    }catch(err){
+      console.log(err)
+      return res.status(400).json({ status: false, message: 'Something went wrong' })
+    }
   })
 
   router.get('/template-preview/:id/:route?', async (req, res) => {

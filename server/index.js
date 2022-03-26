@@ -10,6 +10,7 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const templateRoutes = require("./routes/templates.js");
+const purchaseRoutes = require("./routes/purchase.js");
 
 app
   .prepare()
@@ -49,6 +50,7 @@ app
     server.use(sessionMiddleware)
 
     server.use("/templates", templateRoutes(server));
+    server.use("/purchase", purchaseRoutes(server));
 
     server.get("*", (req, res) => {
       return handle(req, res);

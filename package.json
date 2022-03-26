@@ -36,7 +36,7 @@
     "passport-twitter": "^1.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "stripe": "^8.211.0",
+    "stripe": "^8.212.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

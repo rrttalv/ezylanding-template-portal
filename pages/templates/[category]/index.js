@@ -10,7 +10,7 @@ const TemplateItem = (props) => {
 
   const { template } = props
 
-  const { title, fullThumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt } = template
+  const { title, fullThumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt, _id } = template
 
   const getRow = (title, value, includeTitle = true, valueClass = '') => (
     <div className='template-meta_row'>
@@ -55,7 +55,7 @@ const TemplateItem = (props) => {
   return (
     <Layout>
       {
-        modalOpen ? (<StripeModal closeCheckout={closeCheckout} title={template.title} />) : undefined
+        modalOpen ? (<StripeModal closeCheckout={closeCheckout} title={template.title} templateId={_id} />) : undefined
       }
       <section className='container-fluid template-view'>
         <div className='row'>

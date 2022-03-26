@@ -33,12 +33,12 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('User', UserSchema)
 
-const createUser = async (email, customerId) => {
-  return await User.create({ email, customerId })
+const createUser = async (email, stripeCustomerId) => {
+  return await User.create({ email, stripeCustomerId })
 }
 
-const setUserPassword = async (userId, password) => {
-  const password = await bcrypt.hash(password)
+const setUserPassword = async (userId, rawPassword) => {
+  const password = await bcrypt.hash(rawPassword)
   return await User.updateOne({ _id: userId }, { $set: { password } })
 }
 

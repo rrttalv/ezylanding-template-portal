@@ -1,10 +1,11 @@
 import { CardElement, Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState } from 'react'
+import config from '../../../utils/config';
 import Spinner from '../../Spinner';
 
 const Checkout = (props) => {
   const [message, setMessage] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   const stripe = useStripe();
   const elements = useElements();
@@ -16,12 +17,12 @@ const Checkout = (props) => {
         return
       }
 
-      setIsLoading(true)
+      setLoading(true)
   
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${process.env.REACT_APP_API_BASE}/api/stripe/single/callback?clientSecret=${props.clientSecret}&intentId=${props.intentId}`,
+          return_url: `${config.APP_URL}/purchase?purchaseId=${props.purchaseId}&paymentIntentId=${props.intentId}`,
         },
       })
   
@@ -31,11 +32,11 @@ const Checkout = (props) => {
         setMessage("An unexpected error occured.");
       }
   
-      setIsLoading(false)
+      setLoading(false)
       
     }catch(err){
       console.log(err)
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 

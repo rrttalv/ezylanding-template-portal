@@ -5,10 +5,12 @@ import Close from '../../assets/close.svg'
 import Caret from '../../assets/caret-down.svg'
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../../utils/config';
+import Spinner from '../Spinner';
 
 const StripeModal = (props) => {
   const [clientSecret, setClientSecret] = useState('')
   const [intentId, setIntentId] = useState('')
+  const [purchaseId, setPurchaseId] = useState('')
   const [optionsOpen, setOptionsOpen] = useState(false)
   const [checkoutOptions, setCheckoutOptions] = useState([
     {
@@ -27,8 +29,7 @@ const StripeModal = (props) => {
   const [email, setEmail] = useState('')
   const [currentSlide, setCurrentSlide] = useState('options')
   const [message, setMessage] = useState('')
-
-  console.log(config)
+  const [loading, setLoading] = useState(false)
 
   const stripePromise = loadStripe(config.STRIPE_KEY)
 
@@ -68,16 +69,48 @@ const StripeModal = (props) => {
     setOptionsOpen(!optionsOpen)
   }
 
-  const nextSlide = e => {
+  const nextSlide = async e => {
     e.preventDefault()
-    setMessage('')
+    setLoading(true)
     if(!email || email.length < 5){
       setMessage('Invalid email address')
       setTimeout(() => {
         setMessage('')
       }, 10000)
+      setLoading(false)
+      return
     }
+    const { value: selectionValue } = checkoutOptions.find(({ selected }) => selected)
     //Fetch stripe customer and payment intent
+    try{
+      const res = await fetch('/templates/payment-intent', {
+        method: 'POST',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'manual',
+        body: JSON.stringify({
+          templateTag: selectionValue, 
+          email,
+          templateId: props.templateId
+        })
+      })
+      const json = await res.json()
+      if(!json.status){
+        setMessage(json.message)
+      }else{
+        const { clientSecret: secret, paymentIntentId, purchaseId: purchase } = json
+        setClientSecret(secret)
+        setIntentId(paymentIntentId)
+        setPurchaseId(purchase)
+        setCurrentSlide('payment')
+      }
+      setLoading(false)
+    }catch(err){
+      setLoading(false)
+    }
   }
 
   const getOptions = () => {
@@ -149,7 +182,9 @@ const StripeModal = (props) => {
           </span>
         </div>
         <button className='next' onClick={e => nextSlide(e)}>
-          Final Step
+          {
+            loading ? <Spinner center={true} style={{ height: '25px', margin: 0 }} scale={0.3} /> : 'Final Step'
+          }
         </button>
       </form>
     </div>
@@ -175,9 +210,9 @@ const StripeModal = (props) => {
               undefined
             }
             {
-              currentSlide === 'payment' ? (
+              currentSlide === 'payment' && clientSecret && intentId && purchaseId ? (
                 <Elements options={options} stripe={stripePromise}>
-                  <Checkout intentId={intentId} clientSecret={clientSecret} />
+                  <Checkout intentId={intentId} clientSecret={clientSecret} purchaseId={purchaseId} />
                 </Elements>
               )
               :
