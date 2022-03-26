@@ -13,7 +13,9 @@ const Purchase = (props) => {
 }
 
 export const getServerSideProps = async ({ query: { purchaseId, paymentIntentId } }) => {
-  return { props: { purchaseId, paymentIntentId } }
+  const res = await fetch(`${process.env.APP_URL}/purchase/download?purchaseId=${purchaseId}&paymentIntentId=${paymentIntentId}`)
+  const { status, template, message } = await res.json()
+  return { props: { status, template, message  } }
 }
 
 export default Purchase

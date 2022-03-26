@@ -30,6 +30,22 @@ const getTemplateFromS3 = async (templateId) => {
   }
 }
 
+const getTemplateBoilerplate = async (tag) => {
+  try{
+    const { AWS_BUCKET: Bucket } = process.env
+    const s3 = getS3Client()
+    const Key = `static/${tag === 'single-webpack' ? 'webpack-boilerplate' : 'html-boilerplate'}.zip`
+    const params = {
+      Bucket,
+      Key
+    }
+    const data = await s3.getObject(params).promise()
+    return new Buffer(data.Body)
+  }catch(err){
+    console.log(err)
+  }
+}
+
 
 const getAssetS3Url = (assetId, extension) => {
   return `https://ezylanding-user-assets.s3.amazonaws.com/media/${assetId}.${extension}`
@@ -41,5 +57,5 @@ const getTemplateAssetS3Url = (assetName, extension) => {
 
 module.exports = {
   getAssetS3Url, getTemplateAssetS3Url,
-  getTemplateFromS3
+  getTemplateFromS3, getTemplateBoilerplate
 }
