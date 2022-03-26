@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Layout from '../../../components/Layout';
 import moment from 'moment'
 import Link from 'next/link';
+import StripeModal from '../../../components/StripeModal';
 
 const TemplateItem = (props) => {
+
+  const [modalOpen, setModalOpen] = useState(false)
 
   const { template } = props
 
@@ -26,23 +29,34 @@ const TemplateItem = (props) => {
     </div>
   )
 
+  const initCheckout = () => {
+    setModalOpen(true)
+  }
+
   const getButtonsRow = () => (
     <div className='template-meta_row buttons'>
       <Link href={previewURL}>
-        <a title={`${title} HTML template preview page`}>
+        <a target={"_blank"} title={`${title} HTML template preview page`}>
           <button className='btn-bordered'>
             Preview
           </button>
         </a>
       </Link>
-      <button className='btn-bordered'>
+      <button onClick={() => initCheckout()} className='btn-bordered'>
         Buy
       </button>
     </div>
   )
 
+  const closeCheckout = () => {
+    setModalOpen(false)
+  }
+
   return (
     <Layout>
+      {
+        modalOpen ? (<StripeModal closeCheckout={closeCheckout} title={template.title} />) : undefined
+      }
       <section className='container-fluid template-view'>
         <div className='row'>
           <div className='col-12'>

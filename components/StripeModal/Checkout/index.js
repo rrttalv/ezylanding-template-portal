@@ -5,7 +5,6 @@ import Spinner from '../../Spinner';
 const Checkout = (props) => {
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [email, setEmail] = useState('')
 
   const stripe = useStripe();
   const elements = useElements();
@@ -44,7 +43,7 @@ const Checkout = (props) => {
     <div className='stripe_form-wrapper'>
       {
         message ? (
-          <div className='stripe-error'>
+          <div className='form-error'>
             <span>Payment error: {message}</span>
           </div>
         )
@@ -52,21 +51,6 @@ const Checkout = (props) => {
         undefined
       }
       <form onSubmit={handleSubmit}>
-        <div className='form-row'>
-          <label htmlFor="email">
-            Email Address
-          </label>
-          <input 
-            label="Email"
-            id="email"
-            type="text"
-            placeholder="johndoe@examole.com"
-            required
-            autoComplete="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
         <PaymentElement id="payment-element" />
         <button disabled={isLoading || !stripe || !elements} id="submit">
           {isLoading ? undefined : <span id="button-text">Pay now</span>}
@@ -78,3 +62,5 @@ const Checkout = (props) => {
     </div>
   )
 }
+
+export default Checkout

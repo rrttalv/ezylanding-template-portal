@@ -2,15 +2,15 @@ import Link from "next/link"
 
 const Template = (props) => {
 
-  const { thumbnail, altTag, tags, title, frameworkId, _id, priceRange } = props 
+  const { thumbnail, altTag, tags, title, frameworkId, _id, priceRange, previewURL } = props 
   return (
         <div className="template-card card-shadow">
-          <Link href={`/templates/${_id}`}>
-            <a className="template-link" title={`Link to ${title} HTML template preview page`}>
-              <div className="template-card_img">
-                <img src={thumbnail} alt={altTag ? altTag : `${title} template preview picture`} className="template-card_image" />
-              </div>
-              </a>
+            <Link href={`/templates/${_id}`}>
+              <a className="template-link" title={`Link to ${title} HTML template details page`}>
+                <div className="template-card_img">
+                  <img src={thumbnail} alt={altTag ? altTag : `${title} template preview picture`} className="template-card_image" />
+                </div>
+                </a>
             </Link>
           <div className="template-card_body">
             <div className="template-card_meta">
@@ -37,9 +37,11 @@ const Template = (props) => {
                     {priceRange}
                   </span>
                   <div className="template-card_options_buttons">
-                    <button className="btn-bordered">
-                      Preview
-                    </button>
+                    <Link href={`${previewURL}`}>
+                      <a target={"_blank"} className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
+                        Preview
+                      </a>
+                    </Link>
                     <Link href={`/templates/${_id}`}>
                       <a className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
                         Buy

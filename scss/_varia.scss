@@ -124,7 +124,8 @@
   align-items: center;
   justify-content: center;
   &-wrapper {
-    max-width: 500px;
+    max-width: 650px;
+    margin-top: -10rem;
     background: #fff;
     width: 40%;
     height: fit-content;
@@ -150,6 +151,7 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
     h2 {
       width: 100%;
+      font-size: 1.25rem;
       flex: 1;
       margin: 0;
       text-transform: capitalize;
@@ -171,22 +173,10 @@
 
 .modal {
   &-body {
-    .stripe {
-      &_form-wrapper {
-        .stripe-error {
-          background-color: rgba(var(--orange-red-rgb), 0.75);
-          padding: 0.5rem 1rem;
-          text-align: center;
-          border-radius: 8px;
-          box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.05);
-          margin-top: -1rem;
-          margin-bottom: 1rem;
-          span {
-            font-size: 0.925em;
-            font-weight: 300;
-            color: var(--white);
-          }
-        }
+    .form {
+      width: 100%;
+      &_wrapper {
+        width: 100%;
         .form-row {
           display: flex;
           flex-direction: column;
@@ -196,7 +186,7 @@
             color: var(--dim-gray);
             margin-bottom: 0.5rem;
           }
-          input {
+          input, select, .form-control {
             border: none;
             padding: 0.5rem 0;
             font-size: 1em;
@@ -208,18 +198,46 @@
             }
           }
         }
+        .purchase-total {
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          &_heading {
+            font-weight: 300;
+            color: var(--dim-gray);
+            margin-right: 0.5rem;
+          }
+          &_text {
+            color: var(--main);
+            font-weight: 400;
+          }
+        }
       }
-      #submit {
+      #submit, .next {
         width: 100%;
-        padding: 0.75rem 0;
+        padding: 0.45rem 0;
         text-align: center;
         font-size: 1.1rem;
         background-color: #fff;
         border: 2px solid rgba(0,0,0,1);
         border-radius: 8px;
-        margin-top: 2rem;
+        margin-top: 1rem;
         &:hover {
           cursor: pointer;
+        }
+      }
+      .form-error {
+        background-color: rgba(var(--orange-red-rgb), 0.75);
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.05);
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+        span {
+          font-size: 0.925em;
+          font-weight: 300;
+          color: var(--white);
         }
       }
     }

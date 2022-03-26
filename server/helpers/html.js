@@ -80,11 +80,15 @@ const getChildren = (elem, templateId) => {
       return svg
     case 'link':
       const hrefValue = elem.href.indexOf('/') === 0 ? elem.href.slice(1, elem.href.length) : elem.href
+      const templatePath = `${process.env.APP_URL}/templates/template-preview/${templateId}`
       let href = ''
       if(elem.href === '#'){
         href = '#'
       }else{
-        href = `${process.env.APP_URL}/templates/template-preview/${templateId}/${hrefValue}`
+        href = `${templatePath}/${hrefValue}`
+      }
+      if(elem.href === '/'){
+        href = `${templatePath}`
       }
       str += `<a${elemVarString}href="${href}">${elem.children && elem.children.length && !elem.content ? childString : elem.content}</a>`
       return str

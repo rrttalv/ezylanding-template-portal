@@ -8,7 +8,7 @@ const { StripeItem } = require('../models/StripeItem')
 function routes(app) {
   
   const getPriceRange = async () => {
-    const items = await StripeItem.find(({ tag: { $in: ['single-html', 'single' ] } }))
+    const items = await StripeItem.find(({ tag: { $in: ['single-raw', 'single-webpack' ] } }))
     const sorted = items.sort((a, b) => a.price - b.price)
     const prices = sorted.map(item => { return { price: (item.price / 100).toFixed(2), tag: item.tag } })
     const priceRange = '$' + prices[0].price + ' - $' + prices[prices.length - 1].price
@@ -40,7 +40,7 @@ function routes(app) {
     const template = {
       ...dbTemplate,
       fullThumbnail: getTemplateAssetS3Url(`templates/${dbTemplate.templateId}_preview`, 'png'),
-      previewURL: `${process.env.APP_URL}/templates/template-preview/${id}/`,
+      previewURL: `${process.env.APP_URL}/templates/template-preview/${id}`,
       priceRange
     }
     res.json({ template })
@@ -55,6 +55,7 @@ function routes(app) {
       const thumbkey = `templates/${template.templateId}_thumb`
       return {
         ...template,
+        previewURL: `${process.env.APP_URL}/templates/template-preview/${template._id}`,
         thumbnail: getTemplateAssetS3Url(thumbkey, 'jpeg')
       }
     })
