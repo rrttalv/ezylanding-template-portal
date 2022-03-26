@@ -1,6 +1,7 @@
 @import "_vars.scss";
 @import "_header.scss";
 @import "_templates.scss";
+@import "_purchase.scss";
 @import "_template.scss";
 @import "_varia.scss";
 @import "_sections.scss";
@@ -49,6 +50,12 @@ body > div {
   &_content {
     min-height: 100%;
   }
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a {

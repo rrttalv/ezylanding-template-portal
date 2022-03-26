@@ -1,17 +1,23 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const { Template } = require('./Template')
+const { User } = require('./User')
 
 const StripePurchaseSchema = new Schema({
   stripeCustomerId: {
     type: String
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
   completed: {
     type: Boolean,
     default: false
+  },
+  openCount: {
+    type: Number,
+    default: 0
   },
   paymentIntentId: {
     type: String
@@ -23,7 +29,7 @@ const StripePurchaseSchema = new Schema({
     type: String
   },
   template: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'template'
   },
   createdAt: {
@@ -53,7 +59,10 @@ const createPurchase = async (user, customerId, paymentIntentId, clientSecret, t
 }
 
 const completePurchase = async (paymentIntentId, purchaseId) => {
-  return await StripePurchase.updateOne({ paymentIntentId, _id: purchaseId, completed: { $ne: true } }, { $set: { completedAt: new Date(), completed: true } })
+  return await StripePurchase.updateOne(
+    { paymentIntentId, _id: purchaseId, completed: { $ne: true } }, 
+    { $set: { completedAt: new Date(), completed: true, $inc: { openCount: 1 } } }
+  )
 }
 
 module.exports = { StripePurchase, createPurchase, completePurchase }

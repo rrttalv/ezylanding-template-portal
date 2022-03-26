@@ -195,7 +195,7 @@ const getStyles = (styles, palette) => {
 }
 
 const compileFullTemplate = (template, frameworkId, templateId, buildProps = {}) => {
-  const templatePages = []
+  const templateFiles = []
   const cssFiles = []
   template.pages.forEach(page => {
     //frameworkId, template, templateId
@@ -207,8 +207,8 @@ const compileFullTemplate = (template, frameworkId, templateId, buildProps = {})
     })
   })
   template.cssFiles.forEach(file => {
-    const rawName = file.name.replace(/.css/ig, '')
-    const fileName = buildProps.rawHTML ? file.name : `_${rawName}.scss`
+    const rawName = buildProps.rawHTML ? file.name : '_' + file.name.replace(/.css/ig, '')
+    const fileName = buildProps.rawHTML ? file.name : `${rawName}.scss`
     cssFiles.push({
       fileName,
       rawName,
@@ -217,6 +217,7 @@ const compileFullTemplate = (template, frameworkId, templateId, buildProps = {})
   })
   cssFiles.push({
     fileName: buildProps.rawHTML ? `palette.css` : '_palette.scss',
+    rawName: '_palette',
     content: compilePaletteStr(template.palette)
   })
   if(!buildProps.rawHTML){

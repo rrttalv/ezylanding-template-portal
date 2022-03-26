@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const AssetSchema = new Schema({
   user: {
@@ -29,13 +30,16 @@ const AssetSchema = new Schema({
 
 const Asset = mongoose.model('Asset', AssetSchema)
 
-export default Asset
-
-export const saveAsset = async (user, name, extension, originalName) => {
+const saveAsset = async (user, name, extension, originalName) => {
   return await Asset.create({
     user,
     name,
     extension,
     originalName
   })
+}
+
+module.exports = {
+  Asset,
+  saveAsset
 }

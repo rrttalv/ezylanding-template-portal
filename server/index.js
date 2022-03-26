@@ -27,6 +27,11 @@ app
     
     const { MONGO_STRING } = process.env
     const clientPromise = mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true }).then(conn => conn.connection.getClient())
+    require('./models/Template')
+    require('./models/StripeItem')
+    require('./models/StripePurchase')
+    require('./models/Asset')
+    require('./models/User')
     const db = mongoose.connection
     db.on('error', e => {
       console.log(e)
