@@ -7,13 +7,8 @@ const Navbar = () => {
   const router = useRouter()
 
   const getStyle = href => {
-    if(router.asPath === '/'){
-      return {
-        color: 'var(--light)'
-      }
-    }
     return {
-      color: router.asPath === href ? 'var(--main)' : 'var(--dark)',
+      color: router.asPath === href ? 'var(--main)' : 'var(--dim-gray)',
     }
   }
   
@@ -36,6 +31,11 @@ const Navbar = () => {
               </button>
               <div className="collapse navbar-collapse" id="navbarCollapse">
                   <ul className="nav navbar-nav me-auto mb-2 mb-md-0" id="navbar-main">
+                      <li className="nav-item me-5">
+                        <Link href="/">
+                          <a style={getStyle('/')} title="EzyLanding HTML templates browse view" className="nav-link link-dark">Home</a>
+                        </Link>
+                      </li>
                       <li className="nav-item me-5">
                         <Link href="/templates">
                           <a style={getStyle('/templates')} title="EzyLanding HTML templates browse view" className="nav-link link-dark">Browse Templates</a>

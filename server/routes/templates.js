@@ -59,6 +59,26 @@ function routes(app) {
     }
   })
 
+  //Featured templates list
+  router.get('/featured-templates', async (req, res) => {
+    const { amount } = req.query
+    const limit = amount ? Number(amount) : 20
+    const dbTemplates = await Template.find({ featured: { $eq: true }, publicTemplate: { $eq: true }, listed: { $eq: true } })
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .select('_id frameworkId templateId title tags subTitle pageLength')
+      .lean()
+    const templates = dbTemplates.map(template => {
+      const thumbkey = `templates/${template.templateId}_thumb`
+      return {
+        ...template,
+        previewURL: `${process.env.APP_URL}/templates/template-preview/${template._id}`,
+        thumbnail: getTemplateAssetS3Url(thumbkey, 'jpeg')
+      }
+    })
+    res.json({ templates })
+  })
+
   router.get('/template-preview/:id/:route?', async (req, res) => {
     const { id, route } = req.params
     const dbTemplate = await Template.findOne({ _id: id }).lean()
@@ -89,7 +109,12 @@ function routes(app) {
   router.get('/templates-list', async(req, res) => {
     const { pageNo } = req.query
     const skip = Number(pageNo ? pageNo : 0)
-    const list = await Template.find({ listed: { $eq: true }, publicTemplate: { $eq: true } }).limit(20).skip(skip).lean()
+    const list = await Template.find({ listed: { $eq: true }, publicTemplate: { $eq: true } })
+      .sort({ createdAt: -1 })
+      .limit(20)
+      .skip(skip)
+      .select('_id frameworkId templateId title tags subTitle pageLength')
+      .lean()
     const priceRange = await getPriceRange()
     const templates = list.map(template => {
       const thumbkey = `templates/${template.templateId}_thumb`

@@ -20,6 +20,13 @@ const TemplateSchema = new Schema({
     type: Boolean,
     default: false
   },
+  featured: {
+    type: Boolean,
+    default: false
+  },
+  subTitle: {
+    type: String,
+  },
   listed: {
     type: Boolean,
     default: false

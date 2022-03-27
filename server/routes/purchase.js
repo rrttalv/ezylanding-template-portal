@@ -62,16 +62,10 @@ const routes = (app) => {
       const { status } = await stripe.paymentIntents.retrieve(
         paymentIntentId
       )
-      return res.json({ 
-        status: false, 
-        message: 'This purchase is not completed yet, refresh this page in a few minutes, contact support if this issue persists', 
-        template: null, 
-        meta 
-      })
       if(status !== 'succeeded'){
         return res.json({ 
           status: false, 
-          message: 'This purchase is not completed yet, refresh this page in a few minutes, contact support if this issue persists', 
+          message: `This purchase is not completed yet, refresh this page in a few minutes, contact support if this issue persists. Purchase status: ${status}`, 
           template: null, 
           meta 
         })
@@ -84,7 +78,7 @@ const routes = (app) => {
       res.json({ template: { title, downloadURL }, message: '', status: true, meta })
     }catch(err){
       console.log(err)
-      res.json({ status: false, message: 'Something went wrong, try refreshing this page or contact support if this issue persists', template: null })
+      res.json({ status: false, message: 'Something went wrong, try refreshing this page or contact support if this issue persists', template: null, meta: null })
     }
   })
 

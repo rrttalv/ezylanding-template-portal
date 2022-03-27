@@ -2,6 +2,7 @@
 @import "_header.scss";
 @import "_templates.scss";
 @import "_purchase.scss";
+@import "_footer.scss";
 @import "_template.scss";
 @import "_varia.scss";
 @import "_sections.scss";
@@ -72,6 +73,54 @@ a {
 
 .bg-main {
   background: var(--main);
+}
+
+.bg-dark {
+  background: var(--dark);
+}
+
+.title {
+  font-weight: 800;
+}
+
+.bg-pattern {
+  background-size: 18px 18px;
+  opacity: 0.5;
+  background-repeat: repeat;
+  background-position: 0px 0px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='Artboard-5' fill='%238185ee' fill-opacity='0.68' fill-rule='nonzero'%3E%3Cpath d='M6 18h12V6H6v12zM4 4h16v16H4V4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-pattern.light {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='Artboard-5' fill='%23fafafa' fill-opacity='0.68' fill-rule='nonzero'%3E%3Cpath d='M6 18h12V6H6v12zM4 4h16v16H4V4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.patterns-small {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+}
+
+.patterns-small-right {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 2rem;
+  right: -1rem;
+  width: 225px;
+  height: 209px;
+}
+
+.patterns-small-left {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: -1rem;
+  left: -1rem;
+  width: 225px;
+  height: 209px;
+  background-size: 18px 18px;
+  background-position: -10px 0px;
 }
 
 .bg-purple {

@@ -9,10 +9,15 @@ const Purchase = (props) => {
   const getErrorView = () => (
     <div className='row'>
       <div className='col-lg-8 col-md-12 offset-lg-2 offset-0'>
-        <h1>Oof something's wrong 🤷</h1>
-        <span>
-          Message from server: {message}
-        </span>
+        <div className='purchase-page_err'>
+          <h1>Oof... something's wrong 🤷😞</h1>
+          <span className='warning'>
+            Message from server:
+          </span>
+          <span className='server-msg'>
+            {message}
+          </span>
+        </div>
       </div>
     </div>
   )
