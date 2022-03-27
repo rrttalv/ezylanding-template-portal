@@ -3,6 +3,7 @@ import Link from "next/link"
 import Layout from '../../components/Layout'
 import { useEffect, useState } from "react"
 import Discord from '../../assets/discord.svg'
+import LinkSVG from '../../assets/link.svg'
 import Caret from '../../assets/caret-down.svg'
 
 const Help = (props) => {
@@ -48,42 +49,99 @@ const Help = (props) => {
         open: false
       },
       {
+        question: 'For how long is my purchase link valid?',
+        id: 'q-3',
+        answer: `Your purchase link for a template will be valid forever! 
+        This means that with said link you will always be able to download the template that you purchased.`,
+        open: false
+      },
+      {
+        question: 'Where can I give feedback regarding a template?',
+        id: 'q-4',
+        answer: `Found a bug in a template or maybe you just want to suggest an edit that made your life easier?
+        We are 100% open to feeback. Just send us the template link and your feedback on discord or twitter.`,
+        links: [
+          {
+            href: 'http://localhost:3000/',
+            target: '_blank',
+            linkText: 'Share feedback on discord'
+          },
+          {
+            href: 'https://twitter.com/ezylanding',
+            target: '_blank',
+            linkText: 'Share feedback via Twitter'
+          }
+        ],
+        open: false
+      },
+      {
+        question: 'Do all templates have native SCSS support?',
+        id: 'q-5',
+        answer: `Found a bug in a template or maybe you just want to suggest an edit that made your life easier?
+        We are 100% open to feeback. Just send us the template link and your feedback on discord or twitter.`,
+        open: false
+      },
+      {
+        question: 'Where can I host my website?',
+        id: 'q-6',
+        answer: `Here are the hosting providers our templates will work with 100%`,
+        links: [
+          {
+            href: 'https://netlify.com',
+            target: '_blank',
+            linkText: 'Netlify (recommended)'
+          },
+          {
+            href: 'https://www.digitalocean.com/',
+            target: '_blank',
+            linkText: 'DigitalOcean'
+          },
+          {
+            href: 'https://aws.amazon.com/getting-started/hands-on/host-static-website/',
+            target: '_blank',
+            linkText: 'AWS'
+          },
+        ],
+        open: false
+      },
+      {
+        question: 'When will the drag and drop HTML template editor be launched?',
+        id: 'q-7',
+        answer: `We are actively working on the drag and drop HTML editor. We expect to launch it by the start of Q3 2022`,
+        open: false
+      },
+      {
+        question: "Where's dark mode?",
+        id: 'q-8',
+        answer: `Coming soon ;)`,
+        open: false
+      }
+    ],
+    pricing: [
+      {
         question: 'What is the difference between a Webpack HTML template and a regular HTML template?',
-        id: 'q-2',
+        id: 'qp-1',
         answer: `With a regular HTML template you only get the CSS and HTML files after making a purchase. 
         Our Webpack templates have built in SCSS support and they are extremely easy to deploy anywhere.
         If you don't have your own Webpack setup and want to move fast, then we suggest you use our Webpack supported templates`,
         open: false
       },
       {
-        question: 'For how long is my purchase link valid?',
-        id: 'q-3',
-        answer: 'asd',
-        open: false
-      },
-      {
-        question: 'Where can I give feedback regarding a template?',
-        id: 'q-4',
-        answer: '',
+        question: 'Is there a Monthly/Yearly subscription model?',
+        id: 'qp-2',
+        answer: `With the launch of our drag and drop HTML editor we expect to launch a monthly, yearly, and a limited time lifetime subscription model.
+        With a recurring subscription you will have access to all the available templates and can download or edit any of them.
+        The lifetime subscription offer will be available for a limited time only! With a lifetime subscription you will have access
+        to all of our current and future templates until the end of time!`,
+        open: false,
         links: [
-          {
-            href: 'http://localhost:3000/',
-            target: '_blank',
-            linkText: 'Share feedback on our discord server'
-          },
           {
             href: 'https://twitter.com/ezylanding',
             target: '_blank',
-            linkText: 'Share feedback on our discord server'
+            linkText: 'Be the first to know when we launch our lifetime subscriptions!'
           }
-        ],
-        open: false
-      }
-    ],
-    pricing: [
-      {
-
-      }
+        ]
+      },
     ],
     misc: [
       {
@@ -120,7 +178,6 @@ const Help = (props) => {
     e.preventDefault()
     const copy = {...FAQ}
     const copyItems = copy[type].map(item => {
-      console.log(item, id)
       if(item.id === id){
         return {
           ...item,
@@ -139,7 +196,7 @@ const Help = (props) => {
   const getFAQCard = type => {
     const data = FAQ[type]
     return (
-      <div className="row mb-3 card-row g-0">
+      <div className="row card-row g-0">
         <div className="col-lg-3 col-md-12 mb-3 mb-lg-0">
           <h3 className="faq-card_left-title text-main">
             {type}
@@ -148,11 +205,11 @@ const Help = (props) => {
         <div className="col-lg-9 col-md-12">
           <div className="row faq-card-row g-0">
             {
-              data.map(item => {
+              data.map((item, idx) => {
                 const { question, answer, links, open, id } = item
                 return (
                   <div className="col-12" key={question}>
-                    <div className="faq-card_content">
+                    <div className="faq-card_content" style={{ borderBottom: idx === data.length - 1 ? 'none' : '' }}>
                       <div className="faq-card_content_header">
                         <button className="btn-none" onClick={e => toggleCard(e, type, id)}>
                           <h5 className="faq-card_content_header_title">{question} <Caret style={{ transform: `${open ? 'rotate(180deg)' : 'rotate(0)'}` }} /></h5>
@@ -164,7 +221,20 @@ const Help = (props) => {
                                 {answer}
                               </p>
                               {
-                                links && links.length ? undefined : undefined
+                                links && links.length ? (
+                                  <div className="faq-card_content_links">
+                                    <LinkSVG />
+                                    {
+                                      links.map(link => (
+                                        <Link key={link.href} href={link.href}>
+                                          <a target={link.target} className="faq-card_content_link">
+                                            {link.linkText}
+                                          </a>
+                                        </Link>
+                                      ))
+                                    }
+                                  </div>
+                                ) : undefined
                               }
                             </div>
                           ) : undefined
@@ -183,9 +253,9 @@ const Help = (props) => {
 
   return (
     <Layout>
-      <section className='landing-section container-fluid first-section section'>
+      <section className='landing-section container-fluid first-section section help-section'>
         <div className="section-text-wrapper center">
-            <h1 className='title text-main mb-0'>Need a bit of help?</h1>
+            <h1 className='title text-main'>Need a bit of help?</h1>
             <p className="subtitle text-gray">Hopefully these resources help you</p>
         </div>
         <div className="section-cards">
@@ -211,6 +281,24 @@ const Help = (props) => {
         </div>
         <div className="faq-cards">
           {getFAQCard('general')}
+          {getFAQCard('pricing')}
+        </div>
+        <div className="faq-end">
+          <div className="faq-end_body">
+            <h3>Didn't find what you were looking for?</h3>
+            <div className="faq-end_body_buttons">
+              <Link href={'https://twitter.com/ezylanding'}>
+                <a className="contact-btn twitter" target={'_blank'} title="Link to the official EzyLanding Twitter account">
+                  DM on Twitter
+                </a>
+              </Link>
+              <Link href={'http://localhost:3000/'}>
+                <a className="contact-btn discord" target={'_blank'} title="Link to the official EzyLanding Twitter account">
+                  Join Discord
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>

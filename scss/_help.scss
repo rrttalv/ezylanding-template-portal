@@ -4,11 +4,14 @@
 
 .faq-section {
   margin: 5rem 0;
+  margin-bottom: 8rem;
 }
 
 .faq-cards {
   .faq-card-row {
     border-left: 1px solid rgb(var(--dark-blue-rgb), 0.1);
+    padding-top: 2rem;
+    padding-bottom: 2rem!important;
   }
   .faq-card {
     &_left-title {
@@ -16,6 +19,7 @@
       font-weight: 800;
       font-size: 1.5rem;
       margin-top: 1rem;
+      padding-top: 2rem;
     }
     &_content {
       &_header {
@@ -38,11 +42,28 @@
           }
         }
       }
+      &_links {
+        margin-top: 1rem;
+        svg {
+          width: 15px;
+          height: 15px;
+          margin-right: 7px;
+          stroke: var(--dim-gray);
+        }
+      }
+      &_link {
+        font-size: 13px;
+        margin-left: 10px;
+        &:first-of-type {
+          margin-left: 0;
+        }
+        color: rgba(var(--purple-rgb), 0.9)!important;
+      }
       &_body {
         &_text {
           margin: 0;
           margin-top: 0.5rem;
-          font-size: 14px;
+          font-size: 0.95rem;
           color: var(--dim-gray);
         }
       }
@@ -51,8 +72,97 @@
   }
   .card-row {
     padding: 0;
-    margin-top: 2rem!important;
+    margin-bottom: 0!important;
     border-top: 1px solid rgb(var(--dark-blue-rgb), 0.1);
-    padding-top: 1.5rem;
+    &:first-of-type {
+      padding-top: 0;
+      margin-top: 2.5rem!important;
+    }
+  }
+}
+
+.faq-end {
+  &_body {
+    box-shadow: 0px 3px 3px 2px rgba(0,0,0,0.08);
+    display: flex;
+    padding: 2rem 1.5rem;
+    background: var(--main);
+    border-radius: 8px;
+    align-items: center;
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0;
+      width: fit-content;
+    }
+    &_buttons {
+      margin-left: 1rem;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      .contact-btn {
+        margin: 0.5rem 0;
+        width: fit-content;
+        text-align: center;
+        background: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 500;
+        box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.095);
+      }
+      .contact-btn.discord {
+        color: var(--purple);
+        margin-left: 0.5rem;
+      }
+      .contact-btn.twitter {
+        color: rgba(var(--blue-rgb), 1);
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  max-width: 1000px;
+  margin: 5rem auto;
+}
+
+@media screen and (max-width: 991px) {
+  .faq-cards {
+    .faq-card-row {
+      border-left: none;
+    }
+    .faq-card {
+      &_left-title {
+        text-align: center;
+      }
+      &-row {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .faq-end {
+    &_body {
+      flex-wrap: wrap;
+      h3 {
+        width: 100%;
+        text-align: center;
+      }
+      &_buttons {
+        justify-content: center;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.help-section {
+  .title.text-main {
+    margin: 0;
+    margin-bottom: 1rem!important;
   }
 }
