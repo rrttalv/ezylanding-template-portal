@@ -16,27 +16,24 @@ const Footer = () => {
         content: 'Pricing'
       },
       {
-        link: '/roadmap',
-        title: 'Link to EzyLanding product roadmap page',
-        content: 'Roadmap'
-      },
-      {
         link: '/docs',
         title: 'Link to EzyLanding HTML template documentation page',
         content: 'Docs'
       }
     ],
-    support: [
+    company: [
       {
-        link: '/about',
-        title: 'Link to EzyLanding about us page',
-        content: 'About'
+        link: '/help',
+        title: 'Link to EzyLanding about and FAQ page',
+        content: 'Help'
       },
       {
-        link: '/contact',
-        title: 'Link to EzyLanding support contact page',
-        content: 'Contact'
+        link: '/roadmap',
+        title: 'Link to EzyLanding product roadmap page',
+        content: 'Roadmap'
       },
+    ],
+    legal: [
       {
         link: '/privacy',
         title: 'Link to EzyLanding privacy policy',
@@ -47,6 +44,26 @@ const Footer = () => {
         title: 'Link to EzyLanding privacy policy',
         content: 'Terms of service'
       },
+    ],
+    contact: [
+      {
+        link: 'https://twitter.com/ezylanding',
+        title: 'Link to join the EzyLanding discord server',
+        target: '_blank',
+        content: 'Discord'
+      },
+      {
+        link: 'https://twitter.com/ezylanding?v=1',
+        title: 'Link to EzyLanding official Twitter account',
+        target: '_blank',
+        content: 'Twitter'
+      },
+      {
+        email: true,
+        content: 'Email',
+        title: 'EzyLanding email address',
+        link: 'mailto:info@ezylanding.com'
+      },
     ]
   })
 
@@ -56,7 +73,7 @@ const Footer = () => {
       list.map(item => (
         <li key={item.link} className='footer_links_link-wrapper'>
           <Link href={item.link}>
-            <a className='footer_links_link' title={item.title}>
+            <a target={item.target ? item.target : '_self'} className='footer_links_link' title={item.title}>
               {item.content}
             </a>
           </Link>
@@ -68,8 +85,8 @@ const Footer = () => {
   return (
     <footer>
       <div className='footer bg-dark'>
-        <div className='row'>
-          <div className='col-lg-3 col-md-12'>
+        <div className='row g-0 py-0'>
+          <div className='col-lg-3 order-5 order-lg-0 mt-5 mt-lg-0 col-md-12'>
             <div className='footer-left'>
               <Link href={'/'}>
                 <a className='footer-img-link' title={"Link to EzyLanding home page"}>
@@ -77,9 +94,14 @@ const Footer = () => {
                 </a>
               </Link>
               <span>Built with ❤️ by real web-designers</span>
+              <span className='copyright'>
+                Copyright © {new Date().getFullYear()} North Oak OÜ.
+                <br />
+                All rights reserved.
+              </span>
             </div>
           </div>
-          <div className='col-lg-3 col-md-6 col-xs-12 mt-4 mt-lg-0'>
+          <div className='col-lg-2 col-md-6 col-xs-12 mt-4 mt-lg-0'>
             <div className='footer_list-wrapper'>
               <h5 className='footer_title'>Product</h5>
               <ul className='footer_links'>
@@ -87,18 +109,29 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className='col-lg-3 col-md-6 col-xs-12 mt-4 mt-lg-0'>
+          <div className='col-lg-2 col-md-6 col-xs-12 mt-4 mt-lg-0'>
             <div className='footer_list-wrapper'>
-              <h5 className='footer_title'>Support</h5>
+              <h5 className='footer_title'>Company</h5>
               <ul className='footer_links'>
-                {getLinks('support')}
+                {getLinks('company')}
               </ul>
             </div>
           </div>
-          <div className='col-lg-3 col-md-12 mt-4 mb-4 mt-lg-0 mb-lg-0'>
-            <h5 className='footer_title text-lg-right text-center'>
-              Let's stay in touch
-            </h5>
+          <div className='col-lg-2 col-md-6 col-xs-12 mt-4 mt-lg-0'>
+            <div className='footer_list-wrapper'>
+              <h5 className='footer_title'>contact</h5>
+              <ul className='footer_links'>
+                {getLinks('contact')}
+              </ul>
+            </div>
+          </div>
+          <div className='col-lg-3 col-md-6 col-xs-12 mt-4 mt-lg-0'>
+            <div className='footer_list-wrapper'>
+              <h5 className='footer_title'>Legal</h5>
+              <ul className='footer_links'>
+                {getLinks('legal')}
+              </ul>
+            </div>
           </div>
         </div>
         <div className='patterns-small right light bg-pattern' />

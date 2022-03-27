@@ -1,0 +1,58 @@
+.section-cards {
+  margin: 3rem 0;
+}
+
+.faq-section {
+  margin: 5rem 0;
+}
+
+.faq-cards {
+  .faq-card-row {
+    border-left: 1px solid rgb(var(--dark-blue-rgb), 0.1);
+  }
+  .faq-card {
+    &_left-title {
+      text-transform: capitalize;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+    &_content {
+      &_header {
+        padding: 1rem 0;
+        .btn-none {
+          width: 100%;
+          position: relative;
+        }
+        &_title {
+          font-size: 1rem;
+          width: 100%;
+          padding-right: 1rem;
+          margin: 0;
+          svg {
+            fill: var(--main);
+            float: right;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+      &_body {
+        &_text {
+          margin: 0;
+          margin-top: 0.5rem;
+          font-size: 14px;
+          color: var(--dim-gray);
+        }
+      }
+      border-bottom: 1px solid rgb(var(--dark-blue-rgb), 0.1);
+    }
+  }
+  .card-row {
+    padding: 0;
+    margin-top: 2rem!important;
+    border-top: 1px solid rgb(var(--dark-blue-rgb), 0.1);
+    padding-top: 1.5rem;
+  }
+}
