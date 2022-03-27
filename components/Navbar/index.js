@@ -59,8 +59,8 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li className="nav-item me-2">
-                      <Link href="/features">
-                        <a style={getStyle('/features')} title="EzyLanding HTML and React template editor feature list" className="nav-link link-dark">Pricing</a>
+                      <Link href="/pricing">
+                        <a style={getStyle('/pricing')} title="EzyLanding HTML template editor pricing and feature page" className="nav-link link-dark">Pricing</a>
                       </Link>
                     </li>
                     <li className="nav-item me-2">

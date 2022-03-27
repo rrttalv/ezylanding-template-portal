@@ -7,6 +7,7 @@
 @import "_template.scss";
 @import "_varia.scss";
 @import "_help.scss";
+@import "_pricing.scss";
 
 html {
   height: 100%;
@@ -34,16 +35,17 @@ body {
   --blue-rgb: 28, 81, 221;
   --secondary: rgba(62, 227, 197, 1);
   --dim-gray: rgba(105, 105, 105, 1);
-  --light-gray: rgba(185, 185, 185, 1);
+  --light-gray: rgba(204, 204, 204, 1);
   --purple: rgba(135, 62, 227, 1);
   --purple-rgb: 135, 62, 227;
   --light: rgba(250, 250, 250, 1);
   --light-rgb: 230, 230, 230;
-  --light-gray-rgb: 185, 185, 185;
+  --light-gray-rgb: 204, 204, 204;
   --dim-gray-rgb: 105, 105, 105;
   --orange-red: rgba(255, 87, 33, 1);
   --orange-red-rgb: 255, 87, 33;
   --main: rgba(113, 118, 236, 1);
+  --main-rgb: 113, 118, 236;
   --secondary-rgb: 62, 227, 197;
 }
 

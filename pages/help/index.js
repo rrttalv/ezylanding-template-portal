@@ -255,8 +255,8 @@ const Help = (props) => {
     <Layout>
       <section className='landing-section container-fluid first-section section help-section'>
         <div className="section-text-wrapper center">
-            <h1 className='title text-main'>Need a bit of help?</h1>
-            <p className="subtitle text-gray">Hopefully these resources help you</p>
+          <h1 className='title text-main'>Need a bit of help?</h1>
+          <p className="subtitle text-gray">Hopefully these resources help you</p>
         </div>
         <div className="section-cards">
           <div className="row">
