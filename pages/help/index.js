@@ -78,8 +78,7 @@ const Help = (props) => {
       {
         question: 'Do all templates have native SCSS support?',
         id: 'q-5',
-        answer: `Found a bug in a template or maybe you just want to suggest an edit that made your life easier?
-        We are 100% open to feeback. Just send us the template link and your feedback on discord or twitter.`,
+        answer: `Because SCSS requires Webpack only Webpack templates have SCSS support. Raw HTML templates come with regular CSS files`,
         open: false
       },
       {

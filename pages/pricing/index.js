@@ -190,6 +190,23 @@ const Pricing = () => {
               )
             })
           }
+          <div className='comparison_feature comparison-row price-row'>
+            <div className='comparison_feature_wrapper'>
+              <div className='comparison_feature_intro'>
+                <h5 className='comparison_feature_heading'>Price Per Template</h5>
+              </div>
+              <div className='comparison_feature_supported'>
+                <span className='comparison_feature_price text-gray'>
+                  $5
+                </span>
+              </div>
+              <div className='comparison_feature_supported'>
+                <span className='comparison_feature_price text-gray'>
+                  $8
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
         <div className='comparison-cta'>
           <h3>Sounds good?</h3>
