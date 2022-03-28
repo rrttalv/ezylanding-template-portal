@@ -222,7 +222,7 @@ const Pricing = () => {
 
   return (
     <Layout>
-      <div className='landing-section container-fluid first-section section pricing-section'>
+      <section className='landing-section container-fluid first-section section pricing-section'>
         <div className="section-text-wrapper center">
           <h1 className='title text-main'>Template Pricing & Features</h1>
           <p className="subtitle text-gray">Wondering what a HTML template costs these days?</p>
@@ -235,8 +235,8 @@ const Pricing = () => {
             {getPricingCard('webpack', 'webpack-card')}
           </div>
         </div>
-      </div>
-      <div className='landing-section container-fluid section comparison-section'>
+      </section>
+      <section className='landing-section container-fluid section comparison-section'>
         <div className='section-text-wrapper center'>
           <h1 className="title text-dark">
             Compare Pricing
@@ -247,7 +247,7 @@ const Pricing = () => {
         </div>
         {getPricingComparison()}
         <PageCTA title={"Have a feature request?"} />
-      </div>
+      </section>
     </Layout>
   )
 

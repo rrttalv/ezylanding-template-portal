@@ -1,0 +1,80 @@
+.roadmap-content {
+  .roadmap {
+    overflow-y: auto;
+    width: 100%;
+    &-wrapper {
+      margin: 0 auto;
+      width: fit-content;
+      display: flex;
+      flex-direction: row;
+      padding: 3rem 0.5rem;
+    }
+    &-card.q2 {
+      box-shadow: 0px 3px 10px 8px rgba(var(--secondary-rgb), 0.2);
+    }
+    &-card.q3 {
+      box-shadow: 0px 3px 10px 8px rgba(var(--orange-red-rgb), 0.2);
+    }
+    &-card.q4 {
+      box-shadow: 0px 3px 10px 8px rgba(var(--main-rgb), 0.2);
+    }
+    &-card {
+      position: relative;
+      width: 325px;
+      padding: 2.5rem 1rem;
+      padding-right: 2rem;
+      &_title {
+        font-weight: 800;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        color: var(--secondary);
+      }
+      border-radius: 8px;
+      background-color: var(--dark-blue);
+      &_goals {
+        &_list {
+          list-style: none;
+          padding-left: 1rem;
+          &-item {
+            position: relative;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--light);
+          }
+          .card-check {
+            width: 10px;
+            position: absolute;
+            left: -0.6rem;
+            top: 5px;
+            height: 10px;
+            margin-left: -0.5rem;
+            fill: var(--secondary);
+          }
+        }
+      }
+    }
+    &-card.connected {
+      margin-right: 4rem;
+      &::after {
+        content: "";
+        position: absolute;
+        right: -5rem;
+        width: 5rem;
+        z-index: -1;
+        border-collapse: collapse;    
+      }
+    }
+    &-card.connected.bottom {
+      &::after {
+        bottom: 3rem;
+        border-bottom: 4px dashed rgba(var(--secondary-rgb), 0.2);
+      }
+    }
+    &-card.connected.top {
+      &::after {
+        border-bottom: 4px dashed rgba(var(--orange-red-rgb), 0.2);
+        top: 2rem;
+      }
+    }
+  }
+}
