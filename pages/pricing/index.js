@@ -191,6 +191,14 @@ const Pricing = () => {
             })
           }
         </div>
+        <div className='comparison-cta'>
+          <h3>Sounds good?</h3>
+          <Link href={'http://localhost:3000/templates'}>
+            <a className="browse-btn" title="Link to the HTML EzyLanding templates browse page">
+              Browse Templates
+            </a>
+          </Link>
+        </div>
       </div>
     )
   }
