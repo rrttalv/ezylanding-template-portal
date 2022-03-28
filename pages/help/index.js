@@ -1,6 +1,7 @@
 import Head from "next/head"
 import Link from "next/link"
 import Layout from '../../components/Layout'
+import PageCTA from '../../components/PageCTA'
 import { useEffect, useState } from "react"
 import Discord from '../../assets/discord.svg'
 import LinkSVG from '../../assets/link.svg'
@@ -283,23 +284,7 @@ const Help = (props) => {
           {getFAQCard('general')}
           {getFAQCard('pricing')}
         </div>
-        <div className="faq-end">
-          <div className="faq-end_body">
-            <h3>Didn't find what you were looking for?</h3>
-            <div className="faq-end_body_buttons">
-              <Link href={'https://twitter.com/ezylanding'}>
-                <a className="contact-btn twitter" target={'_blank'} title="Link to the official EzyLanding Twitter account">
-                  DM on Twitter
-                </a>
-              </Link>
-              <Link href={'http://localhost:3000/'}>
-                <a className="contact-btn discord" target={'_blank'} title="Link to the official EzyLanding Twitter account">
-                  Join Discord
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <PageCTA title={"Didn't find what you were looking for?"}/>
       </section>
     </Layout>
   )
