@@ -228,10 +228,10 @@ const Pricing = () => {
           <p className="subtitle text-gray">Wondering what a HTML template costs these days?</p>
         </div>
         <div className='row pricing-cards-row'>
-          <div className='col-md-12 col-lg-4 offset-0 offset-lg-2'>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-1'>
             {getPricingCard('raw', 'raw-card')}
           </div>
-          <div className='col-md-12 col-lg-4 offset-0 offset-lg-2 mt-5 mt-lg-0'>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-0 mt-5 mt-lg-0'>
             {getPricingCard('webpack', 'webpack-card')}
           </div>
         </div>

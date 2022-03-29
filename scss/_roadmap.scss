@@ -67,14 +67,56 @@
     &-card.connected.bottom {
       &::after {
         bottom: 3rem;
-        border-bottom: 4px dashed rgba(var(--secondary-rgb), 0.2);
+        border-bottom: 4px dotted rgba(var(--secondary-rgb), 0.2);
       }
     }
     &-card.connected.top {
       &::after {
-        border-bottom: 4px dashed rgba(var(--orange-red-rgb), 0.2);
+        border-bottom: 4px dotted rgba(var(--orange-red-rgb), 0.2);
         top: 2rem;
       }
     }
+  }
+}
+
+.roadmap-details {
+  .details {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    &_section {
+      &_header {
+        padding: 1.5rem;
+        &_title {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0;
+          color: var(--main);
+        }
+      }
+      &_body {
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding-top: 1.5rem;
+        &_content {
+          margin-bottom: 2rem;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+          h5 {
+            font-size: 1.15rem;
+            color: var(--dark-blue);
+          }
+          &_detail-text {
+            font-size: 0.9rem;
+            color: var(--dim-gray);
+          }
+        }
+      }
+    }
+  }
+  .page-cta {
+    padding: 1rem;
   }
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 const PageCTA = props => {
 
-  const { title } = props
+  const { title, twitter, discord } = props
 
   return (
     <div className="page-cta">
@@ -12,12 +12,12 @@ const PageCTA = props => {
         <div className="page-cta_body_buttons">
           <Link href={'https://twitter.com/ezylanding'}>
             <a className="contact-btn twitter" target={'_blank'} title="Link to the official EzyLanding Twitter account">
-              DM on Twitter
+              {twitter ? twitter : `DM on Twitter`}
             </a>
           </Link>
           <Link href={'http://localhost:3000/'}>
             <a className="contact-btn discord" target={'_blank'} title="Link to the official EzyLanding Twitter account">
-              Join Discord
+              {discord ? discord : `Join Discord`}
             </a>
           </Link>
         </div>
