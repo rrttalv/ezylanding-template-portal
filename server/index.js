@@ -52,7 +52,10 @@ app
       resave: false,
       cookie: { maxAge: 24 * 60 * 60 * 1000, domain: 'localhost', secure: false },
     })
+    require("./helpers/passport")(passport)
     server.use(sessionMiddleware)
+    server.use(passport.initialize())
+    server.use(passport.session())
 
     server.use("/templates", templateRoutes(server));
     server.use("/purchase", purchaseRoutes(server));
