@@ -24,7 +24,7 @@ function routes(app) {
       const { templateTag, email, templateId } = req.body
       let user = await User.findOne({ email })
       let customerId = null
-      if((user && !user.stripeCustomerId) || !user){
+      if(!user || (user && !user.stripeCustomerId)){
         const customer = await stripe.customers.create({
           email
         })
@@ -32,6 +32,8 @@ function routes(app) {
       }
       if(!user){
         user = await createUser(email, customerId)
+      }else{
+        customerId = user.stripeCustomerId
       }
       const item = await StripeItem.findOne({ tag: templateTag })
       if(!item){

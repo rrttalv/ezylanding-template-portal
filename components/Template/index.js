@@ -14,11 +14,16 @@ const Template = (props) => {
             </Link>
           <div className="template-card_body">
             <div className="template-card_meta">
-            <Link href={`/templates/${_id}`}>
-              <a className="template-link" title={`Link to ${title} HTML template preview page`}>
-                <h3 className="template-card_title">{title}</h3>
-              </a>
-            </Link>
+              <div className="template-card_meta_header">
+                <Link href={`/templates/${_id}`}>
+                  <a className="template-link" title={`Link to ${title} HTML template preview page`}>
+                    <h3 className="template-card_title">{title}</h3>
+                  </a>
+                </Link>
+                <span className="template-card_price">
+                  {priceRange}
+                </span>
+              </div>
               <div className="template-card_bottom">
                 <div className="template-card_tags">
                   <span className="template-card_tags_tag">
@@ -33,9 +38,6 @@ const Template = (props) => {
                   }
                 </div>
                 <div className="template-card_options">
-                  <span className="template-card_price">
-                    {priceRange}
-                  </span>
                   <div className="template-card_options_buttons">
                     <Link href={`${previewURL}`}>
                       <a target={"_blank"} className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
@@ -44,7 +46,7 @@ const Template = (props) => {
                     </Link>
                     <Link href={`/templates/${_id}`}>
                       <a className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
-                        Buy
+                        Buy Now
                       </a>
                     </Link>
                   </div>

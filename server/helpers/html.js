@@ -33,9 +33,17 @@ const getElementStyle = style => {
 }
 
 const getElementAttributes = attributes => {
-  let str = ''
+  let str = ' '
   if(attributes){
-
+    attributes.forEach(attr => {
+      const [key, val] = attr.split(':')
+      if(!key || !val){
+        return
+      }
+      str += `${key.trim()}="${val.trim()}" ` 
+    })
+  }else{
+    str = ''
   }
   return str
 }
@@ -93,9 +101,11 @@ const getChildren = (elem, templateId, clientBuild = false) => {
       }else{
         const hrefValue = elem.href.indexOf('/') === 0 ? elem.href.slice(1, elem.href.length) : elem.href
         const templatePath = `${process.env.APP_URL}/templates/template-preview/${templateId}`
-        let href = ''
         if(elem.href === '#'){
           href = '#'
+        //If the href is an external link
+        }else if(elem.href.includes('http') || elem.href.includes('www')){
+          href = elem.href
         }else{
           href = `${templatePath}/${hrefValue}`
         }
@@ -103,28 +113,28 @@ const getChildren = (elem, templateId, clientBuild = false) => {
           href = `${templatePath}`
         }
       }
-      str += `<a${elemVarString}href="${href}">${elem.children && elem.children.length && !elem.content ? childString : elem.content}</a>`
+      str += `<a${elemVarString}${attributes}href="${href}">${elem.children && elem.children.length && !elem.content ? childString : elem.content}</a>`
       return str
     case 'list':
-      str += `<ul${elemVarString}>${childString}</ul>`
+      str += `<ul${elemVarString}${attributes}>${childString}</ul>`
       return str
     case 'listItem':
-      str += `<li${elemVarString}>${childString}</li>`
+      str += `<li${elemVarString}${attributes}>${childString}</li>`
       return str
     case 'text':
-      str += `<${tagName}${elemVarString}>${elem.content}</${tagName}>`
+      str += `<${tagName}${elemVarString}${attributes}>${elem.content}</${tagName}>`
       return str
     case 'img':
-      str += `<img${elemVarString}src="${elem.src}"/>`
+      str += `<img${elemVarString}${attributes}src="${elem.src}"/>`
       return str
     case 'input':
-      str += `<input${elemVarString}placeholder="${elem.placeholder ? elem.placeholder : `Text input`}"/>`
+      str += `<input${elemVarString}${attributes}placeholder="${elem.placeholder ? elem.placeholder : `Text input`}"/>`
       return str
     case 'textarea':
-      str += `<textarea${elemVarString}placeholder="${elem.placeholder ? elem.placeholder : `Text input`}"></textarea>`
+      str += `<textarea${elemVarString}${attributes}placeholder="${elem.placeholder ? elem.placeholder : `Text input`}"></textarea>`
       return str
     case 'button':
-      str += `<button${elemVarString}>${children && children.length ? childString : elem.content}</button>`
+      str += `<button${elemVarString}${attributes}>${children && children.length ? childString : elem.content}</button>`
     default:
       str += ''
       return str
