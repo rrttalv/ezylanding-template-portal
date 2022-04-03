@@ -28,7 +28,7 @@ const Templates = (props) => {
   return (
     <Layout>
       <Head>
-        <title>Browse EzyLanding HTML Templates</title>
+        <title>EzyLanding HTML Templates | Browse Templates</title>
       </Head>
       <section className='landing-section container-fluid first-section section templates'>
         <div className='row'>

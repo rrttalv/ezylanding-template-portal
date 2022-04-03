@@ -3,6 +3,7 @@ import Layout from '../../../components/Layout';
 import moment from 'moment'
 import Link from 'next/link';
 import StripeModal from '../../../components/StripeModal';
+import Head from 'next/head';
 
 const TemplateItem = (props) => {
 
@@ -54,6 +55,9 @@ const TemplateItem = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>EzyLanding HTML Template | {title}</title>
+      </Head>
       {
         modalOpen ? (<StripeModal closeCheckout={closeCheckout} title={template.title} templateId={_id} />) : undefined
       }

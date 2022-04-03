@@ -1,7 +1,116 @@
+import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState } from 'react'
 import Layout from '../components/Layout'
+import PricingCard from '../components/PricingCard'
 
 const Index = (props) => {
+
+  const [prices] = useState({
+    raw: {
+      price: '$5',
+      title: 'Raw HTML',
+      className: 'raw-pricing',
+      features: [
+        {
+          title: 'Responsive',
+          subtitle: 'All of the HTML templates are 100% responsive'
+        },
+        {
+          title: 'Easy customization',
+          subtitle: 'Change the template theme by just editing the CSS vars'
+        },
+        {
+          title: 'Always available',
+          subtitle: `When you buy a template it will be accessible for you, forever!`
+        }
+      ],
+      href: '/templates',
+      linkTitle: 'Link to EzyLanding templates browse page',
+      linkText: 'browse templates'
+    },
+    webpack: {
+      price: '$8',
+      title: 'Webpack + HTML',
+      className: 'webpack-pricing',
+      features: [
+        {
+          title: 'Responsive',
+          subtitle: 'All of the HTML templates are 100% responsive'
+        },
+        {
+          title: 'Easy customization',
+          subtitle: 'Change the template theme by just editing the CSS vars'
+        },
+        {
+          title: 'Always available',
+          subtitle: `When you buy a template it will be accessible for you, forever!`
+        },
+        {
+          title: 'Ready to deploy',
+          subtitle: 'With our webpack configuration the HTML template is deployable out of the box!'
+        }
+      ],
+      href: '/templates',
+      linkTitle: 'Link to EzyLanding templates browse page',
+      linkText: 'browse templates'
+    }
+  })
+
+  const [pitch] = useState({
+    first: {
+      title: 'Templates powered by CSS --vars',
+      text: <p className='pitch-row_text'>{`All of our templates leverage CSS`} <b>vars</b>. 
+        {` You will not have to manually convert each template color scheme to match that of your brand! 
+        Just change the `} <b>--var property value</b> {` and you are good to go!`}</p>,
+      id: 'landing-pitch-',
+      textOrderClass: 'order-lg-1 order-2 mt-lg-0 mt-4',
+      imgOrderClass: 'order-lg-2 order-1 mb-lg-0 mb-4',
+      imageClass: '',
+      imageAlt: '',
+      image: 'https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif'
+    },
+    second: {
+      title: 'Not just another HTML template provider',
+      text: <p className='pitch-row_text'>{`EzyLanding was born as a drag and drop React template editor. The core idea has not changed!
+      By the end of Q2 2022 our drag and drop editor will be available to everyone.
+      And by Q3 2022 You can export your next landing page as a`} <b>React</b> {`or`} <b>NextJS</b> {`project!`}</p>,
+      id: 'landing-pitch-',
+      textOrderClass: 'order-2 mt-lg-0 mt-4',
+      imgOrderClass: 'order-1 mb-lg-0 mb-4',
+      imageClass: '',
+      imageAlt: '',
+      image: 'https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif'
+    },
+    third: {
+      title: `Free HTML & React Templates For Life!`,
+      text: <p className='pitch-row_text'>{`With the launch of our drag and drop editor we will be selling`} <b>500 Limited Lifetime</b> {`plans.
+        With a lifetime plan you will have access to`} <b>ALL</b> {`of our current and future HTML templates.
+        You will never have to buy a single HTML or React template again!`}
+        <br />
+        <br />
+        {`The lifetime plan sale will be announced on`} <Link href={'https://twitter.com/ezylanding'}><a className='link' target="_blank" title="The official EzyLanding Twitter account">Twitter</a></Link></p>,
+      id: 'landing-pitch-',
+      textOrderClass: 'order-lg-1 order-2 mt-lg-0 mt-4',
+      imgOrderClass: 'order-lg-2 order-1 mb-lg-0 mb-4',
+      imageClass: '',
+      imageAlt: '',
+      image: '/assets/ezylanding-gpt-3-api-automatic-html-template-copy-generator-ai.jpg'
+    },
+    fourth: {
+      title: `We're not stopping there`,
+      text: <p className='pitch-row_text'>{`We know how annoying it is to write a new copy for each new project. 
+      But that will be a pain of the past for EzyLanding users! 
+      By Q4 2022 our editor will partner up with the`} <b>GPT-3 API</b> {`which will automatically generate a copy for Your next landing page!`}</p>,
+      id: 'landing-pitch-',
+      textOrderClass: 'order-2 mt-lg-0 mt-4',
+      imgOrderClass: 'order-1 mb-lg-0 mb-4',
+      imageClass: '',
+      imageAlt: '',
+      image: '/assets/ezylanding-gpt-3-api-automatic-html-template-copy-generator-ai.jpg'
+    },
+  })
 
   const getFeaturedTemplates = () => {
     const { templates } = props
@@ -41,20 +150,59 @@ const Index = (props) => {
     )
   }
 
+  const getPricingCard = (type, wrapperClass) => {
+    const props = {
+      wrapperClass, 
+      ...prices[type]
+    }
+    return (
+      <PricingCard {...props} />
+    )
+  }
+
+  const getPitchRow = key => {
+    const { title, text, id, imageClass, imageAlt, image, textOrderClass, imgOrderClass } = pitch[key]
+    return (
+      <div className='row pitch-row'>
+        <div className={`col-md-12 col-lg-6 ${textOrderClass}`}>
+          <div className='pitch-row_wrapper text-wrapper'>
+            <h4 className='pitch-row_title'>{title}</h4>
+              {text}
+          </div>
+        </div>
+        <div className={`col-md-12 col-lg-6 ${imgOrderClass}`}>
+          <div className='pitch-row_wrapper image-wrapper'>
+            {
+              true ? (
+                <img className={`pitch-row_image ${imageClass}`} alt={imageAlt} src={image} />
+              )
+              :
+              (
+                <Image className={`pitch-row_image ${imageClass}`} alt={imageAlt} width="500" height="500" layout="fill" src={image} />
+              )
+            }
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <Layout>
+    <Head>
+      <title>EzyLanding | Beautiful Responsive HTML Webpack Templates</title>
+    </Head>
       <section className='landing-section container-fluid first-section section'>
         <div className='row'>
           <div className='col-md-12 order-2 order-lg-1 col-lg-6 mt-5 mt-lg-0'>
             <div className='section-text-wrapper'>
               <h1 className='title'>Build And Deploy <span className='text-main'>Beautiful</span> Landing Pages In Minutes</h1>
               <p className='subtitle text-gray'>Set up a landing page for your next project in just a few minutes!</p>
-              <p className='subtitle text-gray'>All of our templates are pre-styled, responsive, and customizeable!</p>
+              <p className='subtitle text-gray'>All of our templates are pre-styled, responsive, and EZLY customizeable!</p>
             </div>
           </div>
           <div className='col-md-12 order-1 order-lg-2 col-lg-6'>
-            <img src='https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif' className='preview-gif'>
-            </img>
+            <img src='https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif' className='preview-gif' />
           </div>
         </div>
         <div className='patterns-small-right bg-pattern' />
@@ -76,6 +224,52 @@ const Index = (props) => {
             <div className='featured-templates-row'>
               {getFeaturedTemplates()}
             </div>
+          </div>
+        </div>
+      </section>
+      <section className='landing-section container-fluid section landing-pitch'>
+        <div className='row'>
+          <div className='col-12 mb-3'>
+            <h3 className='title text-center'>What makes <span className="text-main">EzyLanding</span> special?</h3>
+          </div>
+        </div>
+        {getPitchRow('first')}
+        {getPitchRow('second')}
+        {getPitchRow('third')}
+        {getPitchRow('fourth')}
+        <div className='patterns-small-right bg-pattern' />
+        <div className='patterns-small-bottom-right bg-pattern' />
+        <div className='patterns-small-mid-left bg-pattern' />
+        <div className='row buttons'>
+          <div className='col-12'>
+            <h3 className='title text-center'>
+              Want to know what else we get up to?
+            </h3>
+            <div className='pitch-buttons center-content'>
+              <Link href={'https://twitter.com/ezylanding'}>
+                <a className='contact-btn twitter' target="_blank" title="The official EzyLanding Twitter account">
+                  {'💙'} On Twitter
+                </a>
+              </Link>
+              <Link href={'/roadmap'}>
+                <a className='contact-btn roadmap' target="_blank" title="EzyLanding product roadmap">
+                  {'👀'} At Roadmap
+                </a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className='landing-section container-fluid section landing-pricing'>
+        <div className='row'>
+          <div className='col-12 mb-3'>
+            <h3 className='title text-center'>How much do our <span className="text-main">HTML templates</span> cost?</h3>
+          </div>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-1'>
+            {getPricingCard('raw', 'raw-card')}
+          </div>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-0 mt-5 mt-lg-0'>
+            {getPricingCard('webpack', 'webpack-card')}
           </div>
         </div>
       </section>
