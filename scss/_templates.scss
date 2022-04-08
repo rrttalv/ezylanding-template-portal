@@ -17,7 +17,12 @@
   }
   .form-control.search {
     text-indent: 1rem;
+    margin-bottom: 0;
   }
+}
+
+.search-wrapper + p {
+  margin-top: 2rem!important;
 }
 
 .templates.first-section {
@@ -27,6 +32,51 @@
 }
 
 .templates-list {
+  padding-bottom: 5rem;
+  .pagination-col {
+    padding-top: 5rem;
+  }
+  &_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_item {
+      padding: 0.2rem 0.65rem;
+      border-radius: 50%;
+      &-link {
+        font-size: 14px;
+        color: var(--main);
+      }
+      &-forward, &-back {
+        margin-right: 0.75rem;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(var(--main-rgb), 0.5);
+        svg {
+          fill: rgba(var(--main-rgb), 0.8);
+        }
+      }
+      &-back {
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+      &-forward {
+        margin-right: 0;
+        margin-left: 0.75rem;
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+    &_item.active {
+      background-color: var(--main);
+      a {
+        font-weight: 800;
+        color: var(--white);
+      }
+    }
+  }
   .template-item {
     height: 100%;
     width: 95%;

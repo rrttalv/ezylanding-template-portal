@@ -73,6 +73,35 @@
   margin-bottom: 10rem;
 }
 
+.keyword-list {
+  position: absolute;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark);
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(var(--light-gray-rgb), 0.4);
+  &_item {
+    transition: all 0.1s;
+    padding: 0.5rem 0.75rem;
+    text-transform: capitalize;
+    &:hover {
+      border-radius: 4px;
+      background: rgba(var(--main-rgb), 0.9);
+      color: var(--white);
+    }
+  }
+  &_item.border-btm {
+    border-bottom: 1px solid rgba(var(--light-gray-rgb), 0.25);
+  }
+  &_empty {
+    padding: 0.5rem 0.75rem;
+    span {
+      font-weight: 500;
+    }
+  }
+}
+
 .landing-pitch {
   padding: 4rem 0 4rem;
   .buttons.row {

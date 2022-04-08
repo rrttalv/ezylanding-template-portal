@@ -78,6 +78,9 @@ const getChildren = (elem, templateId, clientBuild = false) => {
     case 'section':
       str += `<section${elemVarString}>${childString}</section>\n`
       return str
+    case 'form':
+      str += `<form${elemVarString}>${childString}</form>\n`
+      return str
     case 'div':
       str += `<div${elemVarString}>${childString}</div>\n`
       return str
@@ -191,11 +194,13 @@ const getStyles = (styles, palette) => {
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow-x: hidden;
   }
   body {
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow-x: hidden;
   }\n</style>\n`)
   styles.forEach(style => (
     styleTags.push(`\n<style type="text/css">\n${style.content}\n</style>\n`)

@@ -108,15 +108,78 @@ function routes(app) {
     res.json({ template })
   })
 
+  router.get('/keyword-list', async(req, res) => {
+    try{
+      const { keyword } = req.query
+      const query = {
+        $or: [
+          {
+            tags: {
+              $regex: keyword,
+              $options: 'ig'
+            },
+          },
+          {
+            frameworkId: {
+              $regex: keyword,
+              $options: 'ig'
+            }
+          },
+        ],
+        publicTemplate: { $eq: true },
+        tags: { $ne: [] }
+      }
+      const list = await Template.find(query).select('frameworkId tags -_id').sort({ createdAt: -1 }).limit(20)
+      const keywordList = []
+      list.forEach(item => {
+        const frameworkRegex = new RegExp(keyword, 'ig')
+        const frameworkRes = item.frameworkId.match(frameworkRegex)
+        if(frameworkRes && keywordList.indexOf(item.frameworkId) === -1){
+          keywordList.push(item.frameworkId)
+        }
+        item.tags.forEach(tag => {
+          const regex = new RegExp(keyword, 'ig')
+          const res = tag.match(regex)
+          if(res && keywordList.indexOf(tag) === -1){
+            keywordList.push(tag)
+          }
+        })
+      })
+      res.json({ keywordList })
+    }catch(err){
+      console.log(err)
+    }
+  })
+
   router.get('/templates-list', async(req, res) => {
-    const { pageNo } = req.query
-    const skip = Number(pageNo ? pageNo : 0)
-    const list = await Template.find({ listed: { $eq: true }, publicTemplate: { $eq: true } })
+    const { keyword } = req.query
+    const pageNo = req.query.pageNo ? Number(req.query.pageNo) : 0
+    const skip = pageNo === 0 ? 0 : pageNo * 20
+    const query = { listed: { $eq: true }, publicTemplate: { $eq: true } }
+    if(keyword){
+      query.$or = [
+        {
+          tags: {
+            $regex: keyword,
+            $options: 'ig'
+          },
+        },
+        {
+          frameworkId: {
+            $regex: keyword,
+            $options: 'ig'
+          }
+        },
+      ]
+    }
+    const list = await Template.find(query)
       .sort({ createdAt: -1 })
       .limit(20)
       .skip(skip)
       .select('_id frameworkId templateId title tags subTitle pageLength')
       .lean()
+    const count = await Template.countDocuments(query)
+    const pageRange = Math.ceil(count / 20)
     const priceRange = await getPriceRange()
     const templates = list.map(template => {
       const thumbkey = `templates/${template.templateId}_thumb`
@@ -126,7 +189,7 @@ function routes(app) {
         thumbnail: getTemplateAssetS3Url(thumbkey, 'jpeg')
       }
     })
-    res.json({ templates, priceRange })
+    res.json({ templates, priceRange, pageRange, pageNo, keyword: keyword ? keyword : '' })
   })
 
   router.get("/templates/:category", async (req, res) => {
