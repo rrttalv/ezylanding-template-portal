@@ -69,7 +69,7 @@ const Index = (props) => {
       imgOrderClass: 'order-lg-2 order-1 mb-lg-0 mb-4',
       imageClass: '',
       imageAlt: '',
-      image: 'https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif'
+      image: '/assets/customize-HTML-template-css-vars-custom-color-palette.gif'
     },
     second: {
       title: 'Not just another HTML template provider',
@@ -81,7 +81,7 @@ const Index = (props) => {
       imgOrderClass: 'order-1 mb-lg-0 mb-4',
       imageClass: '',
       imageAlt: '',
-      image: 'https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif'
+      image: '/assets/drag-and-drop-HTML-template-editor-builder-ezylanding.gif'
     },
     third: {
       title: `Free HTML & React Templates For Life!`,
@@ -202,7 +202,7 @@ const Index = (props) => {
             </div>
           </div>
           <div className='col-md-12 order-1 order-lg-2 col-lg-6'>
-            <img src='https://ezylanding.com/images/react-vue-free-drag-drop-html-editor-free-html-template-creator.gif' className='preview-gif' />
+            <img src='/assets/customize-HTML-template-css-vars-custom-color-palette.gif' className='preview-gif' />
           </div>
         </div>
         <div className='patterns-small-right bg-pattern' />
@@ -227,10 +227,24 @@ const Index = (props) => {
           </div>
         </div>
       </section>
+      <section className='landing-section container-fluid section landing-pricing'>
+        <div className='row'>
+          <div className='col-12 mb-3'>
+            <h3 className='title text-center'>How much do our <span className="text-main">HTML templates</span> cost?</h3>
+          </div>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-1'>
+            {getPricingCard('raw', 'raw-card')}
+          </div>
+          <div className='col-md-12 col-lg-5 offset-0 offset-lg-0 mt-5 mt-lg-0'>
+            {getPricingCard('webpack', 'webpack-card')}
+          </div>
+        </div>
+      </section>
       <section className='landing-section container-fluid section landing-pitch'>
         <div className='row'>
           <div className='col-12 mb-3'>
             <h3 className='title text-center'>What makes <span className="text-main">EzyLanding</span> special?</h3>
+            <p className='subheading text-center text-gray'>Here's what the future of EzyLanding will look like!</p>
           </div>
         </div>
         {getPitchRow('first')}
@@ -257,19 +271,6 @@ const Index = (props) => {
                 </a>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-      <section className='landing-section container-fluid section landing-pricing'>
-        <div className='row'>
-          <div className='col-12 mb-3'>
-            <h3 className='title text-center'>How much do our <span className="text-main">HTML templates</span> cost?</h3>
-          </div>
-          <div className='col-md-12 col-lg-5 offset-0 offset-lg-1'>
-            {getPricingCard('raw', 'raw-card')}
-          </div>
-          <div className='col-md-12 col-lg-5 offset-0 offset-lg-0 mt-5 mt-lg-0'>
-            {getPricingCard('webpack', 'webpack-card')}
           </div>
         </div>
       </section>

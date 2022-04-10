@@ -59,7 +59,7 @@ const Templates = (props) => {
 
   const getListedKeywords = () => {
     const emptyMessage = '😮 No matches, try searching for something else'
-    const list = [...suggestedKeywords, ...suggestedKeywords, ...suggestedKeywords]
+    const list = [...suggestedKeywords]
     if(keywordsLoading){
       return (
         <div className="keyword-list loading">

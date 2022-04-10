@@ -65,7 +65,7 @@
     margin-bottom: 2rem;
   }
   .pricing-card {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }
 
@@ -104,6 +104,12 @@
 
 .landing-pitch {
   padding: 4rem 0 4rem;
+  .title {
+    margin-bottom: 0.5rem;
+  }
+  .subheading {
+    margin-bottom: 2rem;
+  }
   .buttons.row {
     padding-bottom: 8rem;
     margin-top: 3rem;
