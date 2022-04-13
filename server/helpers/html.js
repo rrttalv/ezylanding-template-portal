@@ -65,7 +65,7 @@ const getID = id => {
 }
 
 
-const getChildren = (elem, templateId, clientBuild = false) => {
+const getChildren = (elem, templateId, clientBuild = false, rawHTML = false) => {
   const { children, className, domID, tagName } = elem
   const style = getElementStyle(elem.style)
   const attributes = getElementAttributes(elem.attributes)
@@ -86,9 +86,10 @@ const getChildren = (elem, templateId, clientBuild = false) => {
       return str
     case 'svg':
       const regex = /<svg /ig
-      const svg = elem.content.replace(regex, `<svg ${elemVarString} `)
+      const formattedContent = elem.content.replace(regex, `<svg${elemVarString} `)
+      const svg = formattedContent.split('\n').join('')
       str += svg
-      return svg
+      return str
     case 'link':
       let href = ''
       if(clientBuild){
@@ -98,7 +99,11 @@ const getChildren = (elem, templateId, clientBuild = false) => {
           if(elem.href.indexOf('#') === 0){
             href = elem.href
           }else{
-            href = elem.href.indexOf('/') === 0 ? elem.href + '.html' : `/${elem.href}.html`
+            if(elem.href === '/'){
+              href = elem.href
+            }else{
+              href = elem.href.indexOf('/') === 0 ? elem.href + '.html' : `/${elem.href}.html`
+            }
           }
         }
       }else{
@@ -168,7 +173,7 @@ const compileTemplatePage = (frameworkId, template, templateId, targetRoute, cli
   pageString += '</head>\n'
   pageString += '<body>\n'
   targetPage.elements.forEach(element => {
-    pageString += getChildren(element, templateId, clientBuild)
+    pageString += getChildren(element, templateId, clientBuild, buildProps.rawHTML)
   })
   pageString += '</body>\n'
   end.forEach(tag => {
@@ -207,6 +212,30 @@ const getStyles = (styles, palette) => {
   ))
   styleTags.push(`\n<style type="text/css" id="PALETTES">${compilePaletteStr(palette)}</style>\n`)
   return styleTags.join('\n')
+}
+
+const extractSVG = (elements) => {
+  let svgContent = []
+  elements.forEach(element => {
+    if(element.type === 'svg'){  
+      svgContent.push({
+        content: element.content,
+        name: element.fileName ? element.fileName : element.id + '.svg'
+      })
+    }
+    if(element.children && element.children.length){
+      svgContent = [...svgContent, ...extractSVG(element.children)]
+    }
+  })
+  return svgContent
+}
+
+const getSVGFiles = template => {
+  let svgFiles = []
+  template.pages.forEach(page => {
+    svgFiles = [...svgFiles, ...extractSVG(page.elements)]
+  })
+  return svgFiles
 }
 
 const compileFullTemplate = (template, frameworkId, templateId, buildProps = {}) => {
@@ -250,6 +279,7 @@ const compileFullTemplate = (template, frameworkId, templateId, buildProps = {})
 }
 
 module.exports = { 
+  getSVGFiles,
   compileTemplatePage,
   compileFullTemplate
 }

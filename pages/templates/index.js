@@ -189,7 +189,7 @@ const Templates = (props) => {
             templates.map((item, idx) => {
               const templateProps = { ...item, priceRange }
               return (
-                <div key={item._id} className="col-md-12 col-lg-4 mt-5 mt-lg-0">
+                <div key={item._id} className="col-md-12 col-lg-4 mt-5 mt-lg-4">
                   <div className="template-item">
                     <Template {...templateProps} />
                   </div>

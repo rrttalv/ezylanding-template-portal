@@ -1,7 +1,8 @@
 const express = require("express");
 const { getTemplateAssetS3Url, getTemplateFromS3, getTemplateBoilerplate } = require("../helpers/aws");
-const { compileTemplatePage, compileFullTemplate } = require("../helpers/html");
+const { compileTemplatePage, compileFullTemplate, getSVGFiles } = require("../helpers/html");
 const router = express.Router();
+const fs = require('fs')
 const { Template } = require('../models/Template')
 const { StripeItem } = require('../models/StripeItem')
 const { StripePurchase, createPurchase, completePurchase } = require('../models/StripePurchase')
@@ -24,23 +25,41 @@ const routes = (app) => {
     }
     const boilerplate = await getTemplateBoilerplate(purchase.tag)
     const zip = new AdmZip(boilerplate)
+    const newZip = new AdmZip()
+    const zipEntries = zip.getEntries()
+    zipEntries.forEach(zipEntry => {
+      const fileName = zipEntry.entryName
+      const fileContent = zip.readAsText(fileName)
+      //Here remove the top level directory
+      const newFileName = fileName.substring(fileName.indexOf("/") + 1)
+      if(newFileName !== ''){
+        newZip.addFile(newFileName, Buffer.from(fileContent, 'utf8'))
+      }
+    })
     const { templateId, frameworkId, title } = purchase.template
     const template = await getTemplateFromS3(templateId)
     const { cssFiles, templateFiles } = compileFullTemplate(template, frameworkId, template._id, { rawHTML: purchase.tag === 'single-raw' })
-    const pathPrefix = purchase.tag === 'single-raw' ? 'raw-boilerplate' : 'webpack-boilerplate/src'
+    const svgFiles = getSVGFiles(template)
+    const pathPrefix = purchase.tag === 'single-raw' ? '' : 'src'
     cssFiles.forEach(file => {
       const { fileName, content } = file
-      zip.addFile(`${pathPrefix}/scss/${fileName}`, Buffer.from(content, 'utf8'))
+      newZip.addFile(`${pathPrefix}/scss/${fileName}`, Buffer.from(content, 'utf8'))
     })
+    if(purchase.tag === 'single-webpack' && svgFiles.length){
+      svgFiles.forEach(svg => {
+        const { name, content } = svg
+        newZip.addFile(`${pathPrefix}/images/content/${name}`, Buffer.from(content, 'utf8'))
+      })
+    }
     templateFiles.forEach(file => {
       const { fileName, content } = file
-      zip.addFile(`${pathPrefix}/${fileName}`, Buffer.from(content, 'utf8'))
+      newZip.addFile(`${pathPrefix}/${fileName}`, Buffer.from(content, 'utf8'))
     })
-    const zipContents = zip.toBuffer()
-    const fileName = `ezylanding-${title.split(' ').join('-')}-template.zip`;
+    const zipContents = newZip.toBuffer()
+    const fileName = `EzyLanding-${title.trim().split(' ').join('-')}-Template.zip`;
     const fileType = 'application/zip';
     res.writeHead(200, {
-      'Content-Disposition': `attachment; filename="${fileName}"`,
+      'Content-Disposition': `attachment; filename=${fileName}`,
       'Content-Type': fileType
     })
     return res.end(zipContents)
