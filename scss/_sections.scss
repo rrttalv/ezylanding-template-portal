@@ -111,8 +111,11 @@
     margin-bottom: 2rem;
   }
   .buttons.row {
+    h3 {
+      margin-bottom: 2rem;
+    }
     padding-bottom: 8rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
   .patterns-small-bottom-right {
     width: 155px;
@@ -259,8 +262,6 @@
     justify-content: center;
     height: 100%;
     .title {
-      font-size: 2.5rem;
-      font-weight: 800;
       margin-bottom: 1rem;
       text-transform: capitalize;
     }

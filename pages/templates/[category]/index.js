@@ -1,12 +1,15 @@
 import React, { Component, useState } from 'react';
+import Caret from '../../../assets/caret-down.svg'
 import Layout from '../../../components/Layout';
 import moment from 'moment'
 import Link from 'next/link';
 import StripeModal from '../../../components/StripeModal';
+import { useRouter } from 'next/router'
 import Head from 'next/head';
 
 const TemplateItem = (props) => {
 
+  const router = useRouter()
   const [modalOpen, setModalOpen] = useState(false)
 
   const { template } = props
@@ -64,6 +67,12 @@ const TemplateItem = (props) => {
       <section className='container-fluid template-view'>
         <div className='row'>
           <div className='col-12'>
+            <span 
+              onClick={() => router.back()}
+              className='back-wrapper'
+            >
+              <Caret /> Back
+            </span>
             <h2 className='title'>{template.title}</h2>
             <p className='description'>
               {description}
@@ -78,8 +87,8 @@ const TemplateItem = (props) => {
             <div className='template-meta card-shadow'>
               {getRow('Framework', frameworkId)}
               {getRow('Total pages', pageLength)}
-              {getRow('Created', moment(createdAt).format('DD/MM/YYYY'))}
-              {getRow('Last updated', moment(updatedAt).format('DD/MM/YYYY'))}
+              {getRow('Created', moment(createdAt).format('DD MMMM YYYY'))}
+              {getRow('Last updated', moment(updatedAt).format('DD MMMM YYYY'))}
               {getRow('', '#' + tags.join(' #'), false, 'tag-list')}
               {getButtonsRow()}
             </div>

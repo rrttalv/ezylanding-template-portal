@@ -196,7 +196,7 @@ const Index = (props) => {
         <div className='row'>
           <div className='col-md-12 order-2 order-lg-1 col-lg-6 mt-5 mt-lg-0'>
             <div className='section-text-wrapper'>
-              <h1 className='title'>Build And Deploy <span className='text-main'>Beautiful</span> Landing Pages In Minutes</h1>
+              <h1 className='title heading heading-lg'>Deploy Your <span className='text-main'>Project's</span> Landing Page in Minutes!</h1>
               <p className='subtitle text-gray'>Set up a landing page for your next project in just a few minutes!</p>
               <p className='subtitle text-gray'>All of our templates are pre-styled, responsive, and EZLY customizeable!</p>
             </div>
@@ -230,7 +230,7 @@ const Index = (props) => {
       <section className='landing-section container-fluid section landing-pricing'>
         <div className='row'>
           <div className='col-12 mb-3'>
-            <h3 className='title text-center'>How much do our <span className="text-main">HTML templates</span> cost?</h3>
+            <h3 className='title text-center heading heading-md'>How much do our <span className="text-main">HTML templates</span> cost?</h3>
           </div>
           <div className='col-md-12 col-lg-5 offset-0 offset-lg-1'>
             {getPricingCard('raw', 'raw-card')}
@@ -243,8 +243,8 @@ const Index = (props) => {
       <section className='landing-section container-fluid section landing-pitch'>
         <div className='row'>
           <div className='col-12 mb-3'>
-            <h3 className='title text-center'>What makes <span className="text-main">EzyLanding</span> special?</h3>
-            <p className='subheading text-center text-gray'>Here's what the future of EzyLanding will look like!</p>
+            <h3 className='title text-center heading heading-md'>What's in store for <span className="text-main">EzyLanding</span>?</h3>
+            <p className='subheading text-center text-gray'>EzyLanding will not be just another HTML template marketplace. Here's what we have planned:</p>
           </div>
         </div>
         {getPitchRow('first')}
@@ -256,7 +256,7 @@ const Index = (props) => {
         <div className='patterns-small-mid-left bg-pattern' />
         <div className='row buttons'>
           <div className='col-12'>
-            <h3 className='title text-center'>
+            <h3 className='title text-center heading heading-md'>
               Want to know what else we get up to?
             </h3>
             <div className='pitch-buttons center-content'>
