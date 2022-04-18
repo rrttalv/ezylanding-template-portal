@@ -285,8 +285,8 @@ const Index = (props) => {
 
 
 export const getServerSideProps = async ({ req }) => {
-  const { origin } = absoluteUrl(req, req.headers.host);
-  const res = await fetch(`http://${origin}/templates/featured-templates`)
+  const { host } = absoluteUrl(req, req.headers.host);
+  const res = await fetch(`http://${host}/templates/featured-templates`)
   const { templates } = await res.json()
   return { props: { templates } }
 }

@@ -208,9 +208,9 @@ const Templates = (props) => {
   )
 }
 
-export const getServerSideProps = async ({ query: { keyword, pageNo } }) => {
-  const { origin } = absoluteUrl(req, req.headers.host);
-  let url = `http://${origin}/templates/templates-list`
+export const getServerSideProps = async ({ req, query: { keyword, pageNo } }) => {
+  const { host } = absoluteUrl(req, req.headers.host);
+  let url = `http://${host}/templates/templates-list`
   if(keyword){
     url += `?keyword=${keyword}`
   }

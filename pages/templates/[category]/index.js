@@ -100,9 +100,9 @@ const TemplateItem = (props) => {
   )
 }
 
-export const getServerSideProps = async ({ query: { category } }) => {
-  const { origin } = absoluteUrl(req, req.headers.host)
-  const res = await fetch(`http://${origin}/templates/template-item/${category}`)
+export const getServerSideProps = async ({ req, query: { category } }) => {
+  const { host } = absoluteUrl(req, req.headers.host)
+  const res = await fetch(`http://${host}/templates/template-item/${category}`)
   const { template } = await res.json()
   return { props: { template } }
 }
