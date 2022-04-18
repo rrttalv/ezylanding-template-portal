@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.js"
+    "build": "next build",
+    "dev": "nodemon server/index.js",
+    "prod": "pm2 start /server/index.js"
   },
   "keywords": [],
   "browserslist": [
@@ -30,6 +32,7 @@
     "mongoose": "^6.2.8",
     "mongoose-express-session": "^0.0.5",
     "next": "^12.1.0",
+    "next-absolute-url": "^1.2.2",
     "passport": "^0.5.2",
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",

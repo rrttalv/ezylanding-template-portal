@@ -5,7 +5,8 @@ import moment from 'moment'
 import Link from 'next/link';
 import StripeModal from '../../../components/StripeModal';
 import { useRouter } from 'next/router'
-import Head from 'next/head';
+import Head from 'next/head'
+import absoluteUrl from "next-absolute-url"
 
 const TemplateItem = (props) => {
 
@@ -100,7 +101,8 @@ const TemplateItem = (props) => {
 }
 
 export const getServerSideProps = async ({ query: { category } }) => {
-  const res = await fetch(`${process.env.APP_URL}/templates/template-item/${category}`)
+  const { origin } = absoluteUrl(req, req.headers.host)
+  const res = await fetch(`${origin}/templates/template-item/${category}`)
   const { template } = await res.json()
   return { props: { template } }
 }

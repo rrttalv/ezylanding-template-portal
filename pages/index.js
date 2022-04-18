@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Layout from '../components/Layout'
 import PricingCard from '../components/PricingCard'
+import absoluteUrl from "next-absolute-url";
 
 const Index = (props) => {
 
@@ -283,8 +284,9 @@ const Index = (props) => {
 }
 
 
-export const getServerSideProps = async () => {
-  const res = await fetch(`${process.env.APP_URL}/templates/featured-templates`)
+export const getServerSideProps = async ({ req }) => {
+  const { origin } = absoluteUrl(req, req.headers.host);
+  const res = await fetch(`${origin}/templates/featured-templates`)
   const { templates } = await res.json()
   return { props: { templates } }
 }

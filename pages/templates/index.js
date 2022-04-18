@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import Template from "../../components/Template"
 import Spinner from "../../components/Spinner"
+import absoluteUrl from "next-absolute-url";
 
 let _searchDebounce = null
 
@@ -208,7 +209,8 @@ const Templates = (props) => {
 }
 
 export const getServerSideProps = async ({ query: { keyword, pageNo } }) => {
-  let url = `${process.env.APP_URL}/templates/templates-list`
+  const { origin } = absoluteUrl(req, req.headers.host);
+  let url = `${origin}/templates/templates-list`
   if(keyword){
     url += `?keyword=${keyword}`
   }

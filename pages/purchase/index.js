@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
+import absoluteUrl from "next-absolute-url";
 
 const Purchase = (props) => {
 
@@ -63,7 +64,8 @@ const Purchase = (props) => {
 }
 
 export const getServerSideProps = async ({ query: { purchaseId, paymentIntentId } }) => {
-  const res = await fetch(`${process.env.APP_URL}/purchase/download?purchaseId=${purchaseId}&paymentIntentId=${paymentIntentId}`)
+  const { origin } = absoluteUrl(req, req.headers.host);
+  const res = await fetch(`${origin}/purchase/download?purchaseId=${purchaseId}&paymentIntentId=${paymentIntentId}`)
   const { status, template, message } = await res.json()
   return { props: { status, template, message  } }
 }
