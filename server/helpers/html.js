@@ -121,7 +121,7 @@ const getChildren = (elem, templateId, clientBuild = false, rawHTML = false) => 
           href = `${templatePath}`
         }
       }
-      str += `<a${elemVarString}${attributes}href="${href}">${elem.children && elem.children.length && !elem.content ? childString : elem.content}</a>`
+      str += `<a${elemVarString}${attributes}href="${href}">${elem.content ? elem.content : ''}${childString}</a>`
       return str
     case 'list':
       str += `<ul${elemVarString}${attributes}>${childString}</ul>`

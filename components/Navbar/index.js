@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="container">
             <Link href="/">
               <a className="navbar-brand me-5">
-                <img src="https://ezylanding-user-assets.s3.amazonaws.com/brand/logo_old_medium.png" className="logo" alt="EzyLanding Brand Logo" />
+                <img src="/assets/logo_old_extra-small.png" className="logo" alt="EzyLanding Brand Logo" />
               </a>
             </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
