@@ -91,7 +91,7 @@ body > div {
 }
 
 .back-wrapper {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   font-weight: 300;
   color: rgba(var(--dim-gray-rgb), 0.8);
   cursor: pointer;
@@ -100,7 +100,7 @@ body > div {
     height: 15px;
     transform: rotate(90deg);
     fill: rgba(var(--purple-rgb), 0.8);
-    margin-top: 3px;
+    margin-top: 2px;
   }
   &:hover {
     color: rgba(var(--dim-gray-rgb), 1);
@@ -179,7 +179,7 @@ a {
   height: 209px;
   background-size: 18px 18px;
   background-position: -10px 0px;
-  bottom: -4rem;
+  bottom: -9rem;
 }
 
 .bg-purple {

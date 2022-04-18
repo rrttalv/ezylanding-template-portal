@@ -69,7 +69,8 @@ const Index = (props) => {
       imgOrderClass: 'order-lg-2 order-1 mb-lg-0 mb-4',
       imageClass: '',
       imageAlt: '',
-      image: '/assets/customize-HTML-template-css-vars-custom-color-palette.gif'
+      video: true,
+      image: '/assets/color-picker-preview.mp4'
     },
     second: {
       title: 'Not just another HTML template provider',
@@ -81,10 +82,11 @@ const Index = (props) => {
       imgOrderClass: 'order-1 mb-lg-0 mb-4',
       imageClass: '',
       imageAlt: '',
-      image: '/assets/drag-and-drop-HTML-template-editor-builder-ezylanding.gif'
+      video: true,
+      image: '/assets/drag-and-drop-text-edit-preview.mp4'
     },
     third: {
-      title: `Free HTML & React Templates For Life!`,
+      title: `Unlimited HTML & React Templates For Life!`,
       text: <p className='pitch-row_text'>{`With the launch of our drag and drop editor we will be selling`} <b>500 Limited Lifetime</b> {`plans.
         With a lifetime plan you will have access to`} <b>ALL</b> {`of our current and future HTML templates.
         You will never have to buy a single HTML or React template again!`}
@@ -161,7 +163,7 @@ const Index = (props) => {
   }
 
   const getPitchRow = key => {
-    const { title, text, id, imageClass, imageAlt, image, textOrderClass, imgOrderClass } = pitch[key]
+    const { title, text, id, video, imageClass, imageAlt, image, textOrderClass, imgOrderClass } = pitch[key]
     return (
       <div className='row pitch-row'>
         <div className={`col-md-12 col-lg-6 ${textOrderClass}`}>
@@ -173,12 +175,15 @@ const Index = (props) => {
         <div className={`col-md-12 col-lg-6 ${imgOrderClass}`}>
           <div className='pitch-row_wrapper image-wrapper'>
             {
-              true ? (
-                <img className={`pitch-row_image ${imageClass}`} alt={imageAlt} src={image} />
+              video ? 
+              (
+                <video autoPlay muted loop playsInline>
+                  <source src={image} type="video/mp4" />
+                </video>
               )
               :
               (
-                <Image className={`pitch-row_image ${imageClass}`} alt={imageAlt} width="500" height="500" layout="fill" src={image} />
+                <img className={`pitch-row_image ${imageClass}`} alt={imageAlt} src={image} />
               )
             }
           </div>
@@ -196,13 +201,12 @@ const Index = (props) => {
         <div className='row'>
           <div className='col-md-12 order-2 order-lg-1 col-lg-6 mt-5 mt-lg-0'>
             <div className='section-text-wrapper'>
-              <h1 className='title heading heading-lg'>Deploy Your <span className='text-main'>Project's</span> Landing Page in Minutes!</h1>
-              <p className='subtitle text-gray'>Set up a landing page for your next project in just a few minutes!</p>
-              <p className='subtitle text-gray'>All of our templates are pre-styled, responsive, and EZLY customizeable!</p>
+              <h1 className='title heading heading-lg'>Get A Landing Page For Your Next <span className='text-main'>Project</span> in Minutes!</h1>
+              <p className='subtitle text-gray'>Need a landing page for Your new project? We can help! At EzyLanding You will find HTML templates that You can deploy with just a few clicks!</p>
             </div>
           </div>
           <div className='col-md-12 order-1 order-lg-2 col-lg-6'>
-            <img src='/assets/customize-HTML-template-css-vars-custom-color-palette.gif' className='preview-gif' />
+            <img src='/assets/bootstrap-startup-html-template-gallery-preview.png' className='preview-gif' />
           </div>
         </div>
         <div className='patterns-small-right bg-pattern' />

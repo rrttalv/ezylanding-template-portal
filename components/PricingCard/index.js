@@ -15,7 +15,7 @@ const PricingCard = props => {
         <div className='pricing-card_body'>
           {
             features.map((feature, idx) => (
-              <div className='pricing-card_feature'>
+              <div key={feature + idx + wrapperClass} className='pricing-card_feature'>
                 <h5 className='pricing-card_feature_title'>
                   {feature.title}
                 </h5>

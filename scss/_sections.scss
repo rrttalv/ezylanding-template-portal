@@ -249,6 +249,9 @@
 }
 
 .section {
+  .preview-gif {
+    max-width: 750px;
+  }
   &_link {
     color: var(--purple);
     font-size: 0.95rem;
@@ -368,6 +371,16 @@
   }
 }
 
+
+@media screen and (max-width: 1250px) {
+  .landing-section {
+    .preview-gif {
+      max-width: 625px;
+    }
+  }
+
+}
+
 @media screen and (max-width: 991px) {
   .card-wrapper-right, .card-wrapper-left {
     margin: 0;
@@ -379,6 +392,13 @@
   }
   .pitch-row {
     border-bottom: 1px solid rgba(0, 0, 0, 0.085);
+  }
+  .landing-section {
+    .preview-gif {
+      min-width: 600px;
+      width: 100%;
+      max-width: 100%;
+    }
   }
   .landing-pitch {
     padding: 0!important;
