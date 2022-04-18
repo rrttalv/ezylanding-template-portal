@@ -1,6 +1,6 @@
 import { CardElement, Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState } from 'react'
-import config from '../../../utils/config';
+import config from '../../../utils/prod-config';
 import Spinner from '../../Spinner';
 
 const Checkout = (props) => {

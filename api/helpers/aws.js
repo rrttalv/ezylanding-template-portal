@@ -2,14 +2,14 @@ const aws = require('aws-sdk')
 
 const getS3Client = () => {
   const {
-    AWS_REGION,
+    AWS_REG,
     AWS_KEY,
     AWS_SECRET
   } = process.env
   return new aws.S3({
     accessKeyId: AWS_KEY,
     secretAccessKey: AWS_SECRET,
-    region: AWS_REGION
+    region: AWS_REG
   })
 }
 
