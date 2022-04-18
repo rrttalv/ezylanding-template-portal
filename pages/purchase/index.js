@@ -65,7 +65,7 @@ const Purchase = (props) => {
 
 export const getServerSideProps = async ({ query: { purchaseId, paymentIntentId } }) => {
   const { origin } = absoluteUrl(req, req.headers.host);
-  const res = await fetch(`${origin}/purchase/download?purchaseId=${purchaseId}&paymentIntentId=${paymentIntentId}`)
+  const res = await fetch(`http://${origin}/purchase/download?purchaseId=${purchaseId}&paymentIntentId=${paymentIntentId}`)
   const { status, template, message } = await res.json()
   return { props: { status, template, message  } }
 }
