@@ -1,11 +1,11 @@
 const express = require("express");
-const { getTemplateAssetS3Url, getTemplateFromS3 } = require("../helpers/aws");
-const { compileTemplatePage } = require("../helpers/html");
+const { getTemplateAssetS3Url, getTemplateFromS3 } = require("./helpers/aws");
+const { compileTemplatePage } = require("./helpers/html");
 const router = express.Router();
-const { Template } = require('../models/Template')
-const { StripeItem } = require('../models/StripeItem')
-const { StripePurchase, createPurchase, completePurchase } = require('../models/StripePurchase')
-const { User, createUser } = require('../models/User')
+const { Template } = require('./models/Template')
+const { StripeItem } = require('./models/StripeItem')
+const { StripePurchase, createPurchase, completePurchase } = require('./models/StripePurchase')
+const { User, createUser } = require('./models/User')
 const stripeLib = require('stripe')
 
 function routes(app) {

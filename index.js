@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const templateRoutes = require("./routes/templates.js");
-const purchaseRoutes = require("./routes/purchase.js");
+const templateRoutes = require("./api/templates.js");
+const purchaseRoutes = require("./api/purchase.js");
 
 app
   .prepare()
@@ -27,11 +27,11 @@ app
     
     const { MONGO_STRING } = process.env
     const clientPromise = mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true }).then(conn => conn.connection.getClient())
-    require('./models/Template')
-    require('./models/StripeItem')
-    require('./models/StripePurchase')
-    require('./models/Asset')
-    require('./models/User')
+    require('./api/models/Template')
+    require('./api/models/StripeItem')
+    require('./api/models/StripePurchase')
+    require('./api/models/Asset')
+    require('./api/models/User')
     const db = mongoose.connection
     db.on('error', e => {
       console.log(e)
@@ -52,7 +52,7 @@ app
       resave: false,
       cookie: { maxAge: 24 * 60 * 60 * 1000, domain: 'localhost', secure: false },
     })
-    require("./helpers/passport")(passport)
+    require("./api/helpers/passport")(passport)
     server.use(sessionMiddleware)
     server.use(passport.initialize())
     server.use(passport.session())
