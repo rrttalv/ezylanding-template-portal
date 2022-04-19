@@ -73,7 +73,7 @@ const getChildren = (elem, templateId, clientBuild = false, rawHTML = false) => 
   const id = getID(domID)
   let str = ''
   const elemVarString = `${style}${attributes}${id}${elementClass}`
-  const childString = `${children && children.length ? children.map(child => getChildren(child, templateId, clientBuild)).join('') : ''}`
+  const childString = `${children && children.length ? children.map(child => getChildren(child, templateId, clientBuild, rawHTML)).join('') : ''}`
   switch(elem.type){
     case 'section':
       str += `<section${elemVarString}>${childString}</section>\n`
@@ -93,16 +93,24 @@ const getChildren = (elem, templateId, clientBuild = false, rawHTML = false) => 
     case 'link':
       let href = ''
       if(clientBuild){
-        if(elem.href.includes('http')){
+        if(elem.href.includes('http') || elem.href.includes('mailto')){
           href = elem.href
         }else{
           if(elem.href.indexOf('#') === 0){
             href = elem.href
           }else{
-            if(elem.href === '/'){
-              href = elem.href
+            if(rawHTML){
+              if(elem.href === '/'){
+                href = 'index.html'
+              }else{
+                href = elem.href.indexOf('/') === 0 ? elem.href.replace('/', '') + '.html' : `${elem.href}.html`
+              }
             }else{
-              href = elem.href.indexOf('/') === 0 ? elem.href + '.html' : `/${elem.href}.html`
+              if(elem.href === '/'){
+                href = elem.href
+              }else{
+                href = elem.href.indexOf('/') === 0 ? elem.href + '.html' : `/${elem.href}.html`
+              }
             }
           }
         }
@@ -168,7 +176,7 @@ const compileTemplatePage = (frameworkId, template, templateId, targetRoute, cli
   }
   //Need to include the paths to local css files into the head
   if(clientBuild && buildProps.rawHTML){
-
+    pageString += getStyleImports(cssFiles, palette)
   }
   pageString += '</head>\n'
   pageString += '<body>\n'
@@ -214,6 +222,16 @@ const getStyles = (styles, palette) => {
   return styleTags.join('\n')
 }
 
+const getStyleImports = (styles, palette) => {
+  const styleTags = []
+  styles.forEach(style => {
+    const name = style.name.includes('.css') ? style.name : style.name + '.css'
+    styleTags.push(`\n<link rel="stylesheet" type="text/css" href="css/${name}"/>\n`)
+  })
+  styleTags.push(`\n<link rel="stylesheet" type="text/css" href="css/palette.css"/>\n`)
+  return styleTags.join('\n')
+}
+
 const extractSVG = (elements) => {
   let svgContent = []
   elements.forEach(element => {
@@ -244,7 +262,7 @@ const compileFullTemplate = (template, frameworkId, templateId, buildProps = {})
   template.pages.forEach(page => {
     //frameworkId, template, templateId
     const compiledPage = compileTemplatePage(frameworkId, template, templateId, page.route, true, buildProps)
-    const fileName = page.route === '/' ? 'index.html' : page.route.replaceAll(/\//ig, '') + '.html'
+    const fileName = page.route === '/' ? '/index.html' : page.route.replaceAll(/\//ig, '') + '.html'
     templateFiles.push({
       fileName,
       content: compiledPage

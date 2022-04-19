@@ -139,7 +139,7 @@
       text-transform: capitalize;
       &_tag {
         font-size: 0.9rem;
-        color: var(--dim-gray);
+        color: rgba(var(--blue-rgb), 0.8);
         margin-left: 0.25rem;
         &:first-of-type {
           margin-left: 0;

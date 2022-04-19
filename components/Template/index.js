@@ -26,14 +26,18 @@ const Template = (props) => {
               </div>
               <div className="template-card_bottom">
                 <div className="template-card_tags">
-                  <span className="template-card_tags_tag">
-                    #{frameworkId}
-                  </span>
+                  <Link href={`/templates?keyword=${frameworkId}`}>
+                    <a className="template-card_tags_tag">
+                      #{frameworkId}
+                    </a>
+                  </Link>
                   {
                     tags.map((tag, idx) => (
-                      <span key={idx} className="template-card_tags_tag">
+                    <Link key={idx + _id} href={`/templates?keyword=${tag}`}>
+                      <a className="template-card_tags_tag">
                         #{tag}
-                      </span>
+                      </a>
+                    </Link>
                     ))
                   }
                 </div>

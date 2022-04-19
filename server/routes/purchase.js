@@ -9,6 +9,17 @@ const { StripePurchase, createPurchase, completePurchase } = require('../models/
 const { User, createUser } = require('../models/User')
 const AdmZip = require('adm-zip')
 
+const templateWritePathMap = {
+  'single-raw': {
+    css: 'css',
+    templateFiles: '',
+  },
+  'single-webpack': {
+    css: 'src/scss',
+    templateFiles: 'src'
+  }
+}
+
 const routes = (app) => {
   const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
@@ -31,7 +42,12 @@ const routes = (app) => {
       const fileName = zipEntry.entryName
       const fileContent = zip.readAsText(fileName)
       //Here remove the top level directory
-      const newFileName = fileName.substring(fileName.indexOf("/") + 1)
+      newFileName = ''
+      if(fileName.indexOf('webpack-boilerplate') > -1 || fileName.indexOf('html-boilerplate')){
+        newFileName = fileName.substring(fileName.indexOf("/") + 1)
+      }else{
+        newFileName = fileName
+      }
       if(newFileName !== ''){
         newZip.addFile(newFileName, Buffer.from(fileContent, 'utf8'))
       }
@@ -41,19 +57,16 @@ const routes = (app) => {
     const { cssFiles, templateFiles } = compileFullTemplate(template, frameworkId, template._id, { rawHTML: purchase.tag === 'single-raw' })
     const svgFiles = getSVGFiles(template)
     const pathPrefix = purchase.tag === 'single-raw' ? '' : 'src'
+    const isWebpack = purchase.tag === 'single-raw'
     cssFiles.forEach(file => {
       const { fileName, content } = file
-      newZip.addFile(`${pathPrefix}/scss/${fileName}`, Buffer.from(content, 'utf8'))
+      const path = templateWritePathMap[purchase.tag].css
+      newZip.addFile(`${path}/${fileName}`, Buffer.from(content, 'utf8'))
     })
-    if(purchase.tag === 'single-webpack' && svgFiles.length){
-      svgFiles.forEach(svg => {
-        const { name, content } = svg
-        newZip.addFile(`${pathPrefix}/images/content/${name}`, Buffer.from(content, 'utf8'))
-      })
-    }
     templateFiles.forEach(file => {
+      const path = templateWritePathMap[purchase.tag].templateFiles
       const { fileName, content } = file
-      newZip.addFile(`${pathPrefix}/${fileName}`, Buffer.from(content, 'utf8'))
+      newZip.addFile(`${path}/${fileName}`, Buffer.from(content, 'utf8'))
     })
     const zipContents = newZip.toBuffer()
     const fileName = `EzyLanding-${title.trim().split(' ').join('-')}-Template.zip`;

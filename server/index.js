@@ -7,7 +7,7 @@ const MongoStore = require("connect-mongo")
 
 const PORT = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev: false });
+const app = next({ dev });
 const handle = app.getRequestHandler();
 const templateRoutes = require("./routes/templates.js");
 const purchaseRoutes = require("./routes/purchase.js");
@@ -24,7 +24,6 @@ app
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
       next()
     })
-    
     const { MONGO_STRING } = process.env
     const clientPromise = mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true }).then(conn => conn.connection.getClient())
     require('./models/Template')
