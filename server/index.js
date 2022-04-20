@@ -6,7 +6,6 @@ const passport = require('passport')
 const MongoStore = require("connect-mongo")
 
 const PORT = process.env.PORT || 3000;
-const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev: false });
 const handle = app.getRequestHandler();
 const templateRoutes = require("./routes/templates.js");
