@@ -226,9 +226,9 @@ const getStyleImports = (styles, palette) => {
   const styleTags = []
   styles.forEach(style => {
     const name = style.name.includes('.css') ? style.name : style.name + '.css'
-    styleTags.push(`\n<link rel="stylesheet" type="text/css" href="css/${name}"/>\n`)
+    styleTags.push(`<link rel="stylesheet" type="text/css" href="css/${name}"/>`)
   })
-  styleTags.push(`\n<link rel="stylesheet" type="text/css" href="css/palette.css"/>\n`)
+  styleTags.push(`<link rel="stylesheet" type="text/css" href="css/palette.css"/>`)
   return styleTags.join('\n')
 }
 

@@ -99,7 +99,7 @@ const Index = (props) => {
       imgOrderClass: 'order-lg-2 order-1 mb-lg-0 mb-4',
       imageClass: '',
       imageAlt: '',
-      image: '/assets/ezylanding-gpt-3-api-automatic-html-template-copy-generator-ai.jpg'
+      image: '/assets/lifetime-sale-for-ezylanding-bootstrap-startup-landing-pages.png'
     },
     fourth: {
       title: `We're not stopping there`,
