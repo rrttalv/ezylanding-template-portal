@@ -129,7 +129,7 @@ const Templates = (props) => {
         }
         {
           pages.map(page => (
-            <div className={`templates-list_pagination_item ${page.active ? 'active' : 'inactive'}`}>
+            <div key={page.index} className={`templates-list_pagination_item ${page.active ? 'active' : 'inactive'}`}>
               <Link href={`/templates?pageNo=${page.index}${queryParams}`}>
                 <a className="templates-list_pagination_item-link">
                   {page.index + 1}
@@ -190,7 +190,7 @@ const Templates = (props) => {
             templates.map((item, idx) => {
               const templateProps = { ...item, priceRange }
               return (
-                <div key={item._id} className="col-md-12 col-lg-4 mt-5 mt-lg-4">
+                <div key={item._id + idx} className="col-md-12 col-lg-4 mt-5 mt-lg-4">
                   <div className="template-item">
                     <Template {...templateProps} />
                   </div>
