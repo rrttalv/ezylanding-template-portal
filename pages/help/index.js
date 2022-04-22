@@ -142,6 +142,19 @@ const Help = (props) => {
           }
         ]
       },
+      {
+        question: 'How much will a lifetime subscription cost?',
+        id: 'qp-3',
+        answer: `The lifetime subscription will cost $125. Only 500 lifetime subscriptions will ever be sold. Afterwards we will be switching to a SaaS pricing model.`,
+        open: false,
+        links: [
+          {
+            href: 'https://twitter.com/ezylanding',
+            target: '_blank',
+            linkText: 'Want to get a lifetime subscription? Follow us on Twitter.'
+          }
+        ]
+      },
     ],
     misc: [
       {

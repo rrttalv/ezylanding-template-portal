@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import Caret from '../../../assets/caret-down.svg'
 import Layout from '../../../components/Layout';
-import moment from 'moment'
+import * as moment from 'moment/moment';
 import Link from 'next/link';
 import StripeModal from '../../../components/StripeModal';
 import { useRouter } from 'next/router'

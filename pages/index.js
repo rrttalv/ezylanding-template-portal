@@ -200,9 +200,9 @@ const Index = (props) => {
     </Head>
       <section className='landing-section container-fluid first-section section'>
         <div className='row'>
-          <div className='col-md-12 order-2 order-lg-1 col-lg-6 mt-5 mt-lg-0'>
+          <div className='col-md-12 col-lg-6 mb-3 mb-lg-0'>
             <div className='section-text-wrapper'>
-              <h1 className='title heading heading-lg'>Get A Landing Page For Your Next <span className='text-main'>Project</span> in Minutes!</h1>
+              <h1 className='title heading heading-lg'>Get a beautiful landing page for your next <span className='text-main'>Project</span> in minutes!</h1>
               <p className='subtitle text-gray'>Need a landing page for Your new project? We can help! At EzyLanding You will find HTML templates that You can deploy with just a few clicks!</p>
             </div>
           </div>

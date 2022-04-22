@@ -44,6 +44,11 @@ const Footer = () => {
         title: 'Link to EzyLanding privacy policy',
         content: 'Terms of service'
       },
+      {
+        link: '/license',
+        title: 'Link to EzyLanding HTML template usage license',
+        content: 'License'
+      },
     ],
     contact: [
       {

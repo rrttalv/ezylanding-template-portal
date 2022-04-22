@@ -160,7 +160,7 @@ const Templates = (props) => {
         <div className='row pt-5 pb-5'>
           <div className='col-md-12 col-lg-8 offset-lg-2 offset-0'>
             <div className='section-text-wrapper center'>
-              <h1 className='title text-main mb-0'>Discover HTML Templates</h1>
+              <h1 className='title text-main mb-0 text-center'>Discover HTML Templates</h1>
               <div className="search-wrapper mt-2">
                 <Search className='search-icon' />
                 <input 

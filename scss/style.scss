@@ -63,10 +63,41 @@ body > div {
   }
 }
 
+.pb-xxl {
+  padding-bottom: 7rem;
+}
+
 .center-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.semibold {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.heavy {
+  font-weight: 800;
+}
+
+.list {
+  padding-left: 1rem;
+  li {
+    margin-bottom: 1rem;
+  }
 }
 
 .heading {
