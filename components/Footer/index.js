@@ -16,32 +16,33 @@ const Footer = () => {
         content: 'Pricing'
       },
       {
-        link: '/help#faq',
+        link: '/help',
         title: 'Link to EzyLanding HTML template FAQ & help page',
-        content: 'FAQ'
+        content: 'Help & FAQ'
       }
     ],
     company: [
-      {
-        link: '/help',
-        title: 'Link to EzyLanding about and FAQ page',
-        content: 'Help'
-      },
       {
         link: '/roadmap',
         title: 'Link to EzyLanding product roadmap page',
         content: 'Roadmap'
       },
+      {
+        email: true,
+        content: 'Email',
+        title: 'EzyLanding email address',
+        link: 'mailto:info@ezylanding.com'
+      },
     ],
     legal: [
       {
         link: '/privacy',
-        title: 'Link to EzyLanding privacy policy',
+        title: 'Link to EzyLanding website & platform privacy policy',
         content: 'Privacy Policy'
       },
       {
         link: '/terms',
-        title: 'Link to EzyLanding privacy policy',
+        title: 'Link to EzyLanding website & platform terms of service',
         content: 'Terms of service'
       },
       {
@@ -62,13 +63,7 @@ const Footer = () => {
         title: 'Link to EzyLanding official Twitter account',
         target: '_blank',
         content: 'Twitter'
-      },
-      {
-        email: true,
-        content: 'Email',
-        title: 'EzyLanding email address',
-        link: 'mailto:info@ezylanding.com'
-      },
+      }
     ]
   })
 
