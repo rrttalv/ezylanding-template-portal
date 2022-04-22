@@ -31,7 +31,7 @@ const StripeModal = (props) => {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const stripePromise = loadStripe(config.STRIPE_KEY)
+  const stripePromise = loadStripe(config.dev ? config.STRIPE_KEY : 'pk_live_51KfMstDNHncdiETbafHfbz4MgkhKl86J3gqXzfDcoj4gSBc9K2wmOVmn0H95X7Azn0rPjmD2pFMVBDCGU6SwW82b00BwaaTszn')
 
   const appearance = {
     theme: 'stripe',
