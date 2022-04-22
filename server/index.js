@@ -6,7 +6,7 @@ const passport = require('passport')
 const MongoStore = require("connect-mongo")
 
 const PORT = process.env.PORT || 3000;
-const app = next({ dev: true });
+const app = next({ dev: false });
 const handle = app.getRequestHandler();
 const templateRoutes = require("./routes/templates.js");
 const purchaseRoutes = require("./routes/purchase.js");
