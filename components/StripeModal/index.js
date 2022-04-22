@@ -4,7 +4,7 @@ import Checkout from './Checkout'
 import Close from '../../assets/close.svg'
 import Caret from '../../assets/caret-down.svg'
 import { loadStripe } from '@stripe/stripe-js';
-import config from '../../utils/config.prod';
+import config from '../../utils/config.js';
 import Spinner from '../Spinner';
 
 const StripeModal = (props) => {
