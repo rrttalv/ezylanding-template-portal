@@ -1,12 +1,14 @@
 ::-webkit-scrollbar {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.01);
   width: 8px;
   height: 8px;
+  box-shadow: none;
 }
 
 /* background of the scrollbar except button or resizer */
 ::-webkit-scrollbar-track {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.01);
+  box-shadow: none;
 }
 
 /* scrollbar itself */
@@ -18,7 +20,7 @@
 
 /* set button(top and bottom of the scrollbar) */
 ::-webkit-scrollbar-button {
-  display:none;
+  display: none;
 }
 
 .spinner-wrapper.center {
