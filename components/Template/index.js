@@ -48,7 +48,7 @@ const Template = (props) => {
                         Preview
                       </a>
                     </Link>
-                    <Link href={`/templates/${slug}-${_id}`}>
+                    <Link href={`/templates/${slug}-${_id}?purchaseModal=true`}>
                       <a className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
                         Buy Now
                       </a>

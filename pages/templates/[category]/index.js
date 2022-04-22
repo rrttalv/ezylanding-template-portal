@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Caret from '../../../assets/caret-down.svg'
 import Layout from '../../../components/Layout';
 import * as moment from 'moment/moment';
@@ -13,7 +13,7 @@ const TemplateItem = (props) => {
   const router = useRouter()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const { template } = props
+  const { template, defaultModalOpen } = props
 
   const { title, fullThumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt, _id } = template
 
@@ -37,6 +37,12 @@ const TemplateItem = (props) => {
   const initCheckout = () => {
     setModalOpen(true)
   }
+
+  useEffect(() => {
+    if(defaultModalOpen){
+      initCheckout()
+    }
+  }, [defaultModalOpen])
 
   const getButtonsRow = () => (
     <div className='template-meta_row buttons'>
@@ -102,9 +108,11 @@ const TemplateItem = (props) => {
 
 export const getServerSideProps = async ({ req, query: { category } }) => {
   const { host } = absoluteUrl(req, req.headers.host)
+  const params = new URLSearchParams(req.query)
+  const defaultModalOpen = params.has('purchaseModal')
   const res = await fetch(`http://${host}/templates/template-item/${category}`)
   const { template } = await res.json()
-  return { props: { template } }
+  return { props: { template, defaultModalOpen } }
 }
 
 export default TemplateItem

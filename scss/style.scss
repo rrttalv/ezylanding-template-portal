@@ -122,13 +122,15 @@ body > div {
 }
 
 .back-wrapper {
-  margin-bottom: 1rem;
-  font-weight: 300;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
   color: rgba(var(--dim-gray-rgb), 0.8);
   cursor: pointer;
   svg {
     width: 20px;
     height: 15px;
+    margin-right: -3px;
     transform: rotate(90deg);
     fill: rgba(var(--purple-rgb), 0.8);
     margin-top: 2px;
