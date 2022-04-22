@@ -1,9 +1,27 @@
 .section-cards {
   margin: 3rem 0;
+  .section-card {
+    &_body {
+      .icon-wrapper {
+        width: 125px;
+        height: 125px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .section-card.discord-card {
+    .icon-wrapper {
+      padding: 30px;
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
 }
 
 .faq-section {
-  margin: 5rem 0;
+  margin: 2rem 0 5rem;
   .page-cta {
     margin: 10rem auto;
     margin-bottom: 5rem;

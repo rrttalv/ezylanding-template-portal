@@ -4,6 +4,7 @@ import Layout from '../../components/Layout'
 import PageCTA from '../../components/PageCTA'
 import { useEffect, useState } from "react"
 import Discord from '../../assets/discord.svg'
+import Twitter from '../../assets/twitter.svg'
 import LinkSVG from '../../assets/link.svg'
 import Caret from '../../assets/caret-down.svg'
 
@@ -11,15 +12,15 @@ const Help = (props) => {
 
   const [cardContent] = useState({
     docs: {
-      heading: 'Read the docs',
-      subheading: 'Feeling a bit lost? No worries! Check out our documentation to get some guidance.',
+      heading: 'Contact on Twitter',
+      subheading: 'Feeling a bit lost? No worries! Get in touch with us on Twitter.',
       className: 'docs-card',
-      linkTitle: 'Link to the official EzyLanding documentation page',
+      linkTitle: 'Link to the official EzyLanding Twitter account',
       target: '_blank',
-      img: 'https://ezylanding-user-assets.s3.amazonaws.com/templates/9752d48e-29eb-4d75-9f79-a26f86016a39_thumb.jpeg',
-      href: '/',
-      imgAlt: 'Preview of the EzyLanding documentation page',
-      buttonText: 'View docs'
+      icon: <Twitter className='twitter-logo' />,
+      href: 'https://twitter.com/ezylanding',
+      imgAlt: 'Preview of the EzyLanding Twitter page',
+      buttonText: 'Contact on Twitter'
     },
     community: {
       heading: 'Contact us via Discord',
@@ -27,9 +28,9 @@ const Help = (props) => {
       target: '_blank',
       linkTitle: 'Link to join the official EzyLanding discord server',
       subheading: `We are always active on Discord! Don't be afraid to message us!`,
-      img: 'https://www.svgrepo.com/show/331368/discord-v2.svg',
+      icon: <Discord className='discord-logo' />,
       imgAlt: 'Preview of the EzyLanding discord server',
-      href: '/',
+      href: 'https://discord.gg/YnfrmSATG6',
       buttonText: 'Join The Discord'
     }
   })
@@ -174,7 +175,7 @@ const Help = (props) => {
               <p className="section-card_header_subheading">{subheading}</p>
             </div>
             <div className="section-card_body">
-              {img ? <img className="section-card_body_image" src={img} alt={imgAlt} /> : (icon)}
+              {img ? <img className="section-card_body_image" src={img} alt={imgAlt} /> : <div className="icon-wrapper">{icon}</div>}
             </div>
             <div className="section-card_footer">
               <button className={`${className}_button`}>
@@ -286,7 +287,7 @@ const Help = (props) => {
           </div>
         </div>
       </section>
-      <section className="landing-section container-fluid section faq-section">
+      <section id="#faq" className="landing-section container-fluid section faq-section">
         <div className="section-text-wrapper center">
           <h1 className="title text-dark">
             Frequently Asked Questions

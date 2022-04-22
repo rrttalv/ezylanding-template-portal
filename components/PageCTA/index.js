@@ -15,7 +15,7 @@ const PageCTA = props => {
               {twitter ? twitter : `DM on Twitter`}
             </a>
           </Link>
-          <Link href={'http://localhost:3000/'}>
+          <Link href={'https://discord.gg/YnfrmSATG6'}>
             <a className="contact-btn discord" target={'_blank'} title="Link to the official EzyLanding Twitter account">
               {discord ? discord : `Join Discord`}
             </a>

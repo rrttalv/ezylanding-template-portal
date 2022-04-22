@@ -16,9 +16,9 @@ const Footer = () => {
         content: 'Pricing'
       },
       {
-        link: '/docs',
-        title: 'Link to EzyLanding HTML template documentation page',
-        content: 'Docs'
+        link: '/help#faq',
+        title: 'Link to EzyLanding HTML template FAQ & help page',
+        content: 'FAQ'
       }
     ],
     company: [
@@ -52,7 +52,7 @@ const Footer = () => {
     ],
     contact: [
       {
-        link: 'https://twitter.com/ezylanding',
+        link: 'https://discord.gg/YnfrmSATG6',
         title: 'Link to join the EzyLanding discord server',
         target: '_blank',
         content: 'Discord'
