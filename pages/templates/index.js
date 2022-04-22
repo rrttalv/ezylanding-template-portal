@@ -210,7 +210,7 @@ const Templates = (props) => {
 
 export const getServerSideProps = async ({ req, query: { keyword, pageNo } }) => {
   const { host } = absoluteUrl(req, req.headers.host);
-  let url = `http://${process.env.APP_URL}/templates/templates-list`
+  let url = `${process.env.APP_URL}/templates/templates-list`
   if(keyword){
     url += `?keyword=${keyword}`
   }
