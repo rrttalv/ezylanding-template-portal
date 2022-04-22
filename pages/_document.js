@@ -14,13 +14,13 @@ const Document = () => {
       <meta property="og:url" content="https://ezylanding.com"/>
       <meta property="og:title" content="EzyLanding | Webpack HTML Templates For Startups" />
       <meta property="og:description" content="About to get started with your next project? Get a landing page from us! At EzyLanding you will find customizeable HTML templates for startups!" />
-      <meta property="og:image" content="/assets/ezylanding-HTML-boostrap-startup-html-templates.png" />
+      <meta property="og:image" content="/assets/meta-preview-image.png" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://ezylanding.com" />
       <meta property="twitter:title" content="EzyLanding | Webpack HTML Templates For Startups" />
       <meta property="twitter:description" content="About to get started with your next project? Get a landing page from us! At EzyLanding you will find customizeable HTML templates for startups!" />
-      <meta property="twitter:image" content="/assets/ezylanding-HTML-boostrap-startup-html-templates.png" />
+      <meta property="twitter:image" content="/assets/meta-preview-image.png" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
