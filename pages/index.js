@@ -119,7 +119,7 @@ const Index = (props) => {
     const { templates } = props
     return (
       templates.map(template => {
-        const { thumbnail, altTag, tags, title, subTitle, frameworkId, _id } = template
+        const { thumbnail, slug, altTag, tags, title, subTitle, frameworkId, _id } = template
         return (
           <div key={_id} className='featured_template'>
             <div className='featured_template_img'>
@@ -127,7 +127,7 @@ const Index = (props) => {
             </div>
             <div className='featured_template_body'>
               <div className='feautred_template_meta'>
-                <Link href={`/templates/${_id}`}>
+                <Link href={`/templates/${slug}-${_id}`}>
                   <a className="template-link" title={`Link to ${title} HTML template preview page`}>
                     <h3 className="featured_template_title">{title}</h3>
                   </a>

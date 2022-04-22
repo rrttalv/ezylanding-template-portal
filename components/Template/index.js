@@ -2,10 +2,10 @@ import Link from "next/link"
 
 const Template = (props) => {
 
-  const { thumbnail, altTag, tags, title, frameworkId, _id, priceRange, previewURL } = props 
+  const { thumbnail, altTag, tags, slug, title, frameworkId, _id, priceRange, previewURL } = props 
   return (
         <div className="template-card card-shadow">
-            <Link href={`/templates/${_id}`}>
+            <Link href={`/templates/${slug}-${_id}`}>
               <a className="template-link" title={`Link to ${title} HTML template details page`}>
                 <div className="template-card_img">
                   <img src={thumbnail} alt={altTag ? altTag : `${title} template preview picture`} className="template-card_image" />
@@ -15,7 +15,7 @@ const Template = (props) => {
           <div className="template-card_body">
             <div className="template-card_meta">
               <div className="template-card_meta_header">
-                <Link href={`/templates/${_id}`}>
+                <Link href={`/templates/${slug}-${_id}`}>
                   <a className="template-link" title={`Link to ${title} HTML template preview page`}>
                     <h3 className="template-card_title">{title}</h3>
                   </a>
@@ -48,7 +48,7 @@ const Template = (props) => {
                         Preview
                       </a>
                     </Link>
-                    <Link href={`/templates/${_id}`}>
+                    <Link href={`/templates/${slug}-${_id}`}>
                       <a className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
                         Buy Now
                       </a>

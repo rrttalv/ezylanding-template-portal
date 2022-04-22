@@ -70,7 +70,7 @@ function routes(app) {
     const dbTemplates = await Template.find({ featured: { $eq: true }, publicTemplate: { $eq: true }, listed: { $eq: true } })
       .sort({ createdAt: -1 })
       .limit(limit)
-      .select('_id frameworkId templateId title tags subTitle pageLength')
+      .select('_id frameworkId slug templateId title tags subTitle pageLength')
       .lean()
     const templates = dbTemplates.map(template => {
       const thumbkey = `templates/${template.templateId}_thumb`
@@ -85,7 +85,9 @@ function routes(app) {
 
   router.get('/template-preview/:id/:route?', async (req, res) => {
     const { id, route } = req.params
-    const dbTemplate = await Template.findOne({ _id: id }).lean()
+    const split = id.split('-')
+    const parsedId = split[split.length - 1]
+    const dbTemplate = await Template.findOne({ _id: parsedId }).lean()
     if(!dbTemplate){
       res.writeHead(301, { Location: '/' })
       return res.end()
@@ -99,8 +101,10 @@ function routes(app) {
 
   router.get('/template-item/:id', async (req, res) => {
     const { id } = req.params
+    const slugArr = id.split('-')
+    const parsedId = slugArr[slugArr.length - 1]
     const priceRange = await getPriceRange()
-    const dbTemplate = await Template.findOne({ _id: id }).lean()
+    const dbTemplate = await Template.findOne({ _id: parsedId }).lean()
     const template = {
       ...dbTemplate,
       fullThumbnail: getTemplateAssetS3Url(`templates/${dbTemplate.templateId}_preview`, 'png'),
@@ -178,7 +182,7 @@ function routes(app) {
       .sort({ createdAt: -1 })
       .limit(20)
       .skip(skip)
-      .select('_id frameworkId templateId title tags subTitle pageLength')
+      .select('_id frameworkId slug templateId title tags subTitle pageLength')
       .lean()
     const count = await Template.countDocuments(query)
     const pageRange = Math.ceil(count / 20)
@@ -187,7 +191,7 @@ function routes(app) {
       const thumbkey = `templates/${template.templateId}_thumb`
       return {
         ...template,
-        previewURL: `${process.env.APP_URL}/templates/template-preview/${template._id}`,
+        previewURL: `${process.env.APP_URL}/templates/template-preview/${template.slug}-${template._id}`,
         thumbnail: getTemplateAssetS3Url(thumbkey, 'jpeg')
       }
     })

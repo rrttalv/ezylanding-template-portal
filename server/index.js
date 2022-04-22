@@ -4,11 +4,13 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('passport')
 const MongoStore = require("connect-mongo")
+const serverConfig = require("./serverConfig.js");
 
 const PORT = process.env.PORT || 3000;
-const app = next({ dev: false });
+const app = next({ dev: serverConfig.dev });
 const handle = app.getRequestHandler();
 const templateRoutes = require("./routes/templates.js");
+const sitemapRoutes = require("./routes/sitemap.js");
 const purchaseRoutes = require("./routes/purchase.js");
 
 app
@@ -56,6 +58,7 @@ app
     server.use(passport.session())
 
     server.use("/templates", templateRoutes(server));
+    server.use("/sitemap", sitemapRoutes(server));
     server.use("/purchase", purchaseRoutes(server));
 
     server.get("*", (req, res) => {

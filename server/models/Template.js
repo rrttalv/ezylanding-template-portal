@@ -51,6 +51,9 @@ const TemplateSchema = new Schema({
     type: String,
     default: 'New template'
   },
+  slug: {
+    type: String
+  },
   tags: {
     type: [{
       type: String
