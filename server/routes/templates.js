@@ -29,9 +29,11 @@ function routes(app) {
           email
         })
         customerId = customer.id
-      }
-      if(!user){
-        user = await createUser(email, customerId)
+        if(user){
+          await User.updateOne({ _id: user._id }, { $set: { stripeCustomerId: customer.id } })
+        }else{
+          user = await createUser(email, customer.id)
+        }
       }else{
         customerId = user.stripeCustomerId
       }
