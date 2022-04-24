@@ -27,24 +27,6 @@ const Purchase = (props) => {
   
   return (
     <Layout>
-      <Head>
-        <script>
-          {
-            config.dev ? (
-              undefined
-            )
-            :
-            (
-              `
-              gtag('event', 'conversion', {
-                'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
-                'transaction_id': ''
-              });
-              `
-            )
-          }
-        </script>
-      </Head>
       <section className='container-fluid purchase-page'>
         {
           !status ? (getErrorView()) : (
@@ -78,6 +60,22 @@ const Purchase = (props) => {
           )
         }
       </section>
+      <script>
+        {
+          config.dev ? (
+            undefined
+          )
+          :
+          (
+            `
+            gtag('event', 'conversion', {
+              'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
+              'transaction_id': ''
+            });
+            `
+          )
+        }
+      </script>
     </Layout>
   )
 
