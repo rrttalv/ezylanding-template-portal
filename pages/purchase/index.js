@@ -67,12 +67,21 @@ const Purchase = (props) => {
           )
           :
           (
-            `
-            gtag('event', 'conversion', {
-              'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
-              'transaction_id': ''
-            });
-            `
+            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"></script>
+            <script>
+              {
+                `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'AW-862206764');
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
+                    'transaction_id': ''
+                  });
+                `
+              }
+            </script>
           )
         }
       </script>
