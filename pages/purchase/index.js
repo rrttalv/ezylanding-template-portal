@@ -28,6 +28,36 @@ const Purchase = (props) => {
   
   return (
     <Layout>
+      {
+        config.dev ? (
+          undefined
+        )
+        :
+        (
+          <Head>
+            <Script 
+              strategy="lazyOnload"
+              src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"
+            ></Script>
+            <Script
+              strategy="lazyOnload"
+            >
+              {
+                `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'AW-862206764');
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
+                    'transaction_id': ''
+                  });
+                `
+              }
+            </Script>
+          </Head>
+        )
+      }
       <section className='container-fluid purchase-page'>
         {
           !status ? (getErrorView()) : (
@@ -61,36 +91,6 @@ const Purchase = (props) => {
           )
         }
       </section>
-      {
-        config.dev ? (
-          undefined
-        )
-        :
-        (
-          <Head>
-            <Script 
-              strategy="lazyOnload"
-              src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"
-            ></Script>
-            <Script
-              strategy="lazyOnload"
-            >
-              {
-                `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'AW-862206764');
-                  gtag('event', 'conversion', {
-                    'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
-                    'transaction_id': ''
-                  });
-                `
-              }
-            </Script>
-          </Head>
-        )
-      }
     </Layout>
   )
 
