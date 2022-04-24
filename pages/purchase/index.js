@@ -36,7 +36,7 @@ const Purchase = (props) => {
             :
             (
               `
-              window.gtag('event', 'conversion', {
+              gtag('event', 'conversion', {
                 'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
                 'transaction_id': ''
               });
