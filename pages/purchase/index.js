@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import absoluteUrl from "next-absolute-url";
+import Script from 'next/script'
 import Head from 'next/head';
 import config from '../../utils/config';
 
@@ -60,15 +61,20 @@ const Purchase = (props) => {
           )
         }
       </section>
-      <script>
-        {
-          config.dev ? (
-            undefined
-          )
-          :
-          (
-            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"></script>
-            <script>
+      {
+        config.dev && false ? (
+          undefined
+        )
+        :
+        (
+          <Head>
+            <Script 
+              strategy="lazyOnload"
+              src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"
+            ></Script>
+            <Script
+              strategy="lazyOnload"
+            >
               {
                 `
                   window.dataLayer = window.dataLayer || [];
@@ -81,10 +87,10 @@ const Purchase = (props) => {
                   });
                 `
               }
-            </script>
-          )
-        }
-      </script>
+            </Script>
+          </Head>
+        )
+      }
     </Layout>
   )
 
