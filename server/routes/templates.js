@@ -108,6 +108,7 @@ function routes(app) {
     const template = {
       ...dbTemplate,
       fullThumbnail: getTemplateAssetS3Url(`templates/${dbTemplate.templateId}_preview`, 'png'),
+      thumbnail: getTemplateAssetS3Url(`templates/${template.templateId}_thumb`, 'jpeg'),
       previewURL: `${process.env.APP_URL}/templates/template-preview/${id}`,
       priceRange
     }

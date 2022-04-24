@@ -6,7 +6,7 @@ const Template = (props) => {
   return (
         <div className="template-card card-shadow">
             <Link href={`/templates/${slug}-${_id}`}>
-              <a className="template-link" title={`Link to ${title} HTML template details page`}>
+              <a className="template-link" title={`Link to ${title} details page`}>
                 <div className="template-card_img">
                   <img src={thumbnail} alt={altTag ? altTag : `${title} template preview picture`} className="template-card_image" />
                 </div>
@@ -16,7 +16,7 @@ const Template = (props) => {
             <div className="template-card_meta">
               <div className="template-card_meta_header">
                 <Link href={`/templates/${slug}-${_id}`}>
-                  <a className="template-link" title={`Link to ${title} HTML template preview page`}>
+                  <a className="template-link" title={`Link to ${title} preview page`}>
                     <h3 className="template-card_title">{title}</h3>
                   </a>
                 </Link>
@@ -44,12 +44,12 @@ const Template = (props) => {
                 <div className="template-card_options">
                   <div className="template-card_options_buttons">
                     <Link href={`${previewURL}`}>
-                      <a target={"_blank"} className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
+                      <a target={"_blank"} className="btn-bordered" title={`Link to ${title} preview page`}>
                         Preview
                       </a>
                     </Link>
                     <Link href={`/templates/${slug}-${_id}?purchaseModal=true`}>
-                      <a className="btn-bordered" title={`Link to ${title} HTML template preview page`}>
+                      <a className="btn-bordered" title={`Link to ${title} preview page`}>
                         Buy Now
                       </a>
                     </Link>

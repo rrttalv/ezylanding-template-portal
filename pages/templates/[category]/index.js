@@ -15,7 +15,7 @@ const TemplateItem = (props) => {
 
   const { template, defaultModalOpen } = props
 
-  const { title, fullThumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt, _id } = template
+  const { title, fullThumbnail, thumbnail, previewURL, description, priceRange, altTag, pageLength, updatedAt, frameworkId, tags, createdAt, _id } = template
 
   const getRow = (title, value, includeTitle = true, valueClass = '') => (
     <div className='template-meta_row'>
@@ -47,7 +47,7 @@ const TemplateItem = (props) => {
   const getButtonsRow = () => (
     <div className='template-meta_row buttons'>
       <Link href={previewURL}>
-        <a target={"_blank"} title={`${title} HTML template preview page`}>
+        <a target={"_blank"} title={`${title} preview page`}>
           <button className='btn-bordered'>
             Preview
           </button>
@@ -67,6 +67,9 @@ const TemplateItem = (props) => {
     <Layout>
       <Head>
         <title>EzyLanding HTML Template | {title}</title>
+        <meta property="og:image" content={thumbnail} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={thumbnail} />
       </Head>
       {
         modalOpen ? (<StripeModal closeCheckout={closeCheckout} title={template.title} templateId={_id} />) : undefined

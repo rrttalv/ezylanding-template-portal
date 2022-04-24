@@ -123,12 +123,12 @@ const Index = (props) => {
         return (
           <div key={_id} className='featured_template'>
             <div className='featured_template_img'>
-              <img src={thumbnail} alt={altTag ? altTag : `EzyLanding ${title} HTML template preview`} />
+              <img src={thumbnail} alt={altTag ? altTag : `EzyLanding ${title} preview`} />
             </div>
             <div className='featured_template_body'>
               <div className='feautred_template_meta'>
                 <Link href={`/templates/${slug}-${_id}`}>
-                  <a className="template-link" title={`Link to ${title} HTML template preview page`}>
+                  <a className="template-link" title={`Link to ${title} preview page`}>
                     <h3 className="featured_template_title">{title}</h3>
                   </a>
                 </Link>

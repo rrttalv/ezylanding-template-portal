@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import absoluteUrl from "next-absolute-url";
+import Head from 'next/head';
+import config from '../../utils/config';
 
 const Purchase = (props) => {
 
@@ -25,6 +27,24 @@ const Purchase = (props) => {
   
   return (
     <Layout>
+      <Head>
+        <script>
+          {
+            config.dev ? (
+              undefined
+            )
+            :
+            (
+              `
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
+                'transaction_id': ''
+              });
+              `
+            )
+          }
+        </script>
+      </Head>
       <section className='container-fluid purchase-page'>
         {
           !status ? (getErrorView()) : (
