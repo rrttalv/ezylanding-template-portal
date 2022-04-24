@@ -62,7 +62,7 @@ const Purchase = (props) => {
         }
       </section>
       {
-        config.dev && false ? (
+        config.dev ? (
           undefined
         )
         :
