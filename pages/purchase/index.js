@@ -28,13 +28,16 @@ const Purchase = (props) => {
   
   return (
     <Layout>
+      <Head>
+        <title>EzyLanding | Download {title}</title>
+      </Head>
       {
         config.dev ? (
           undefined
         )
         :
         (
-          <Head>
+          <>
             <Script 
               strategy="lazyOnload"
               src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"
@@ -55,7 +58,7 @@ const Purchase = (props) => {
                 `
               }
             </Script>
-          </Head>
+          </>
         )
       }
       <section className='container-fluid purchase-page'>
