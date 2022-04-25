@@ -12,12 +12,17 @@ const Sidebar = props => {
 
   return (
     <div style={style ? style : {}} className={`sidebar ${className} ${open ? 'open' : 'closed'}`}>
-      <button onClick={toggleOpen} className="btn-none sidebar_toggle">
-        <div />
-        <div />
-        <div />
-      </button>
+    <button onClick={() => toggleOpen(!open)} className="btn-none sidebar_toggle">
+      <div />
+      <div />
+      <div />
+    </button>
       <div className="sidebar_content">
+        <button onClick={() => toggleOpen(!open)} className="btn-none sidebar_toggle inner-toggle">
+          <div />
+          <div />
+          <div />
+        </button>
         {
           content.map((item => {
             const { linkPath, icon, linkTitle, label } = item
