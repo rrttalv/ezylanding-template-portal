@@ -28,6 +28,11 @@ const Footer = () => {
         content: 'Roadmap'
       },
       {
+        link: '/resources',
+        title: 'The resources we use to design our HTML templates',
+        content: 'Resources'
+      },
+      {
         email: true,
         content: 'Email',
         title: 'EzyLanding email address',
