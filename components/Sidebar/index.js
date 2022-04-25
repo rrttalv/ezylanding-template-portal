@@ -18,11 +18,6 @@ const Sidebar = props => {
       <div />
     </button>
       <div className="sidebar_content">
-        <button onClick={() => toggleOpen(!open)} className="btn-none sidebar_toggle inner-toggle">
-          <div />
-          <div />
-          <div />
-        </button>
         {
           content.map((item => {
             const { linkPath, icon, linkTitle, label } = item

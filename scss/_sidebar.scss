@@ -107,19 +107,14 @@
     max-width: 100%;
     width: 100%;
     .sidebar_toggle {
-      display: none;
-    }
-    .sidebar_toggle.inner-toggle {
-      z-index: 1000;
-      width: 15px;
-      margin-left: auto;
-      height: 20px;
-      left: calc(100vw - 25px);
-      display: block;
+      top: 85px;
+      position: absolute;
+      left: calc(100vw - 20px);
+      z-index: 10000;
     }
     .sidebar_content {
       z-index: 1;
-      background: rgb(var(--light-rgb));
+      background: rgb(255, 255, 255, 0.85);
       max-width: 100%;
       width: 100%;
       display: block;
