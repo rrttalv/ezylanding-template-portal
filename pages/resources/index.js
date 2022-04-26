@@ -163,7 +163,7 @@ const Resources = (props) => {
     {
       linkPath: '/documentation',
       icon: <Book />,
-      label: 'Documentation' 
+      label: 'Documentation'
     }
   ])
   

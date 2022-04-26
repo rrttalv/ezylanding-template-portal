@@ -19,7 +19,12 @@ const Footer = () => {
         link: '/help',
         title: 'Link to EzyLanding HTML template FAQ & help page',
         content: 'Help & FAQ'
-      }
+      },
+      {
+        link: '/documentation',
+        title: '',
+        content: 'Documentation'
+      },
     ],
     company: [
       {

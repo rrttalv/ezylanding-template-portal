@@ -35,6 +35,27 @@ const Sidebar = props => {
                     </span>
                   </a>
                 </Link>
+                {
+                  item.subLinks ? (
+                    <div className="sidebar_item-sublinks">
+                      {
+                        item.subLinks.map(nestedItem => {
+                          return (
+                            <Link key={nestedItem.linkPath} href={nestedItem.linkPath}>
+                              <a title={nestedItem.linkTitle ? nestedItem.linkTitle : `Link to ${nestedItem.linkPath}`}>
+                                <span className="sidebar_item-sublinks_label">
+                                  {nestedItem.label}
+                                </span>
+                              </a>
+                            </Link>
+                          )
+                        })
+                      }
+                    </div>
+                  )
+                  :
+                  undefined
+                }
               </div>
             )
           }))

@@ -8,7 +8,7 @@ const Navbar = () => {
   const router = useRouter()
 
   const listener = () => {
-    const top = document.scrollingElement.scrollTop
+    const top = document.body.scrollTop
     if(top > 80){
       setNavbarClass('bg-dark')
     }else{
@@ -17,8 +17,8 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', listener)
-    return () => window.removeEventListener('scroll', listener)
+    document.body.addEventListener('scroll', listener)
+    return () => document.body.removeEventListener('scroll', listener)
   }, [])
 
   const getStyle = href => {
