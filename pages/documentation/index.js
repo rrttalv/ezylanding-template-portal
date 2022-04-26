@@ -107,6 +107,9 @@ const Documentation = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>EzyLanding | HTML & Webpack Template Configuration and Deployment Documentation</title>
+      </Head>
       <div className="resources d-flex flex-row">
         <Sidebar 
           content={sidebarContent}
@@ -236,7 +239,7 @@ const Documentation = (props) => {
                     </div>
                     <div className="col-12">
                       <p>
-                        These commands will push the template files into your git repository which can then be deployed by Netlify.
+                        These commands will push the template files into your git repository which can then be deployed to Netlify.
                       </p>
                     </div>
                   </div>

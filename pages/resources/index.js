@@ -187,6 +187,9 @@ const Resources = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>EzyLanding | Landing Page Design Resource List</title>
+      </Head>
       <div className="resources d-flex flex-row">
         <Sidebar 
           content={sidebarContent}
