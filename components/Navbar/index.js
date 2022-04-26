@@ -64,6 +64,17 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li className="nav-item me-2">
+                      <Link href="/documentation">
+                        <a 
+                          style={getStyle('/documentation')} 
+                          title="EzyLanding help page with a FAQ and tutorials" 
+                          className="nav-link link-dark"
+                        >
+                          Docs
+                        </a>
+                      </Link>
+                    </li>
+                    <li className="nav-item me-2">
                       <Link href="/help">
                         <a 
                           style={getStyle('/help')} 
