@@ -386,6 +386,7 @@
 }
 
 .resources {
+  flex-direction: row;
   margin-bottom: 2rem;
   .documentation-row {
     p {
@@ -432,7 +433,7 @@
     padding-top: 3rem;
     .col-12 {
       padding-bottom: 3rem;
-      border-right: 2px solid rgba(var(--main-rgb), 0.2);
+      border-bottom: 2px solid rgba(var(--main-rgb), 0.2);
       .heading {
         margin-bottom: 1rem;
       }
@@ -499,7 +500,12 @@
 }
 
 @media screen and (max-width: 991px) {
+  .landing-section {
+    padding-left: 0.5rem!important;
+    padding-right: 0.5rem!important;
+  }
   .resources { 
+    flex-direction: column;
     .docs-wrapper, .resources-wrapper {
       margin: 0 auto;
       max-width: 1400px;

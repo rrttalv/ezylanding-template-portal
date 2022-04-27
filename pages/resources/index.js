@@ -190,7 +190,7 @@ const Resources = (props) => {
       <Head>
         <title>EzyLanding | Landing Page Design Resource List</title>
       </Head>
-      <div className="resources d-flex flex-row">
+      <div className="resources d-flex">
         <Sidebar 
           content={sidebarContent}
           className='resources-navigation'

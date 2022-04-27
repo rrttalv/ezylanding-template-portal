@@ -110,7 +110,7 @@ const Documentation = (props) => {
       <Head>
         <title>EzyLanding | HTML & Webpack Template Configuration and Deployment Documentation</title>
       </Head>
-      <div className="resources d-flex flex-row">
+      <div className="resources d-flex">
         <Sidebar 
           content={sidebarContent}
           className='docs-navigation'

@@ -4,6 +4,9 @@
   .row {
     max-width: 1200px;
   }
+  .row.g-0 {
+    padding: 0 0.5rem!important;
+  }
   color: var(--light);
   padding: 4rem 0;
   &-img {
