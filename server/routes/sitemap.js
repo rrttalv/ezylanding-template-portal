@@ -26,7 +26,7 @@ const routes = (app) => {
     const templates = await Template.find({ publicTemplate: { $eq: true } }).sort({ 'updatedAt': -1 })
     const templatePaths = templates.map(template => {
       return {
-        path: `template/${template.slug}-${template._id}`,
+        path: `templates/${template.slug}-${template._id}`,
         updateDate: new Date(template.updatedAt).toISOString(),
         updateInterval: 'monthly'
       }
