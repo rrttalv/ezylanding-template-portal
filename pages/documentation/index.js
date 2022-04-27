@@ -281,14 +281,13 @@ const Documentation = (props) => {
                     {getImage(imageLinks, 'netlifyStepFour', <span>If the build is successful then a preview of the website should appear and the build log will display 
                       a <b style={{ color: '#054861', background: '#e1fef1', borderRadius: '4px', padding: '2px 4px' }}>Published</b> tag next to the most recent build.</span>)}
                     <p>
-                    Congratulations, your site should now be up and running on Netlify. 
-                    If you are having issues with deploying one of our templates on Netlify then 
-                    feel free to send us a message on {twitterLink} or {discordLink} and we will help you out.
+                    Congratulations, your site should now be up and running on Netlify.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
+            <PageCTA title={"Experiencing issues with a template?"} twitter={'DM on Twitter'} discord={'Join our Discord'}/>
           </section>
         </div>
       </div>
