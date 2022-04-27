@@ -27,15 +27,14 @@ const Document = () => {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Roboto+Mono&display=swap" rel="stylesheet" />
       <script crossOrigin="anonymous" async src="https://www.googletagmanager.com/gtag/js?id=G-XLKD78F156"></script>
-      <Script strategy="lazyOnload">
-        {`
+      <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
         
-          gtag('config', 'G-XLKD78F156');
-          `}
-      </Script>
+          gtag('config', 'G-XLKD78F156');`
+        }}
+      />
       </Head>
       <body>
         <Main />

@@ -38,34 +38,20 @@ const Purchase = (props) => {
         :
         (
           <>
-            <Script 
-              strategy="lazyOnload"
-              src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"
-            ></Script>
-            <Script
-              strategy="lazyOnload"
-            >
-              {
-                `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'AW-862206764');
-                `
-              }
-            </Script>
-            <Script
-              strategy="lazyOnload"
-            >
-              {
-               `
-                gtag('event', 'conversion', {
-                  'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
-                  'transaction_id': ''
-                });
-               `
-              }
-            </Script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-862206764"></script>
+            <script dangerouslySetInnerHTML={{ __html: 
+            `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-862206764');`
+              }}
+            />
+            <script dangerouslySetInnerHTML={{ __html: `gtag('event', 'conversion', {
+                'send_to': 'AW-862206764/jKIRCM7Tt7YDEKz2kJsD',
+                'transaction_id': ''
+              });`
+            }}
+            />
           </>
         )
       }
