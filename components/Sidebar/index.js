@@ -21,11 +21,11 @@ const Sidebar = props => {
         {
           content.map((item => {
             const { linkPath, icon, linkTitle, label } = item
-            const itemClassName =  router.asPath === item.linkPath ? 'active' : 'inactive'
+            const itemClassName = router.asPath === item.linkPath ? ' active' : ''
             return (
               <div 
                 key={linkPath}
-                className={`sidebar_item ${itemClassName}`}
+                className={`sidebar_item${itemClassName}`}
               >
                 <Link href={linkPath}>
                   <a title={linkTitle ? linkTitle : `Link to ${linkPath}`}>

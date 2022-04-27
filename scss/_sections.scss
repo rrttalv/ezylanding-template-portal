@@ -429,11 +429,13 @@
     max-width: 1200px;
     width: calc(100% - 350px);
   }
+  .resource {
+    border-bottom: 2px solid rgba(var(--main-rgb), 0.2);
+  }
   .resource-row {
-    padding-top: 3rem;
+    padding-top: 1.5rem;
     .col-12 {
       padding-bottom: 3rem;
-      border-bottom: 2px solid rgba(var(--main-rgb), 0.2);
       .heading {
         margin-bottom: 1rem;
       }
@@ -446,10 +448,10 @@
       }
     } 
     .resource-image {
-      width: 80%;
+      width: 90%;
       max-height: 350px;
       display: block;
-      margin: 1rem auto;
+      margin: 1.5rem auto;
       object-fit: cover;
       border-radius: 4px;
     }
