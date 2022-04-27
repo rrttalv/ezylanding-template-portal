@@ -290,7 +290,7 @@ const Resources = (props) => {
             {getResourceRows(tools, 'tools', 'HTML & CSS Tools')}
             {getResourceRows(illustrations, 'illustrations', 'Free illustrations')}
             {getResourceRows(icons, 'icons', 'SVG Icons', ' no-border')}
-            <PageCTA title={"Want more free design resources?"} twitter={'Follow on Twitter'} discord={'Join Our Discord'}/>
+            <PageCTA title={"Want more free design resources?"} twitter={'Follow on Twitter'} discord={'Join our Discord'}/>
           </section>
         </div>
       </div>
