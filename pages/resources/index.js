@@ -160,7 +160,7 @@ const Resources = (props) => {
     illustrations: [
       {
         id: 'undraw',
-        title: 'UnDraw - Free customizeable SVG illustrations',
+        title: 'UnDraw - Free customizeable vector illustrations',
         description: (
           <>
             <p className="resource-meta">
@@ -288,7 +288,7 @@ const Resources = (props) => {
           <section className="landing-section container-fluid section resource-content">
             {getResourceRows(images, 'images', 'Royalty Free Images')}
             {getResourceRows(tools, 'tools', 'HTML & CSS Tools')}
-            {getResourceRows(illustrations, 'illustrations', 'Free illustrations')}
+            {getResourceRows(illustrations, 'illustrations', 'Vector illustrations')}
             {getResourceRows(icons, 'icons', 'SVG Icons', ' no-border')}
             <PageCTA title={"Want more free design resources?"} twitter={'Follow on Twitter'} discord={'Join our Discord'}/>
           </section>
