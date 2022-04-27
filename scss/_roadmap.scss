@@ -21,7 +21,7 @@
     &-card {
       position: relative;
       width: 325px;
-      padding: 2.5rem 1rem;
+      padding: 3rem 1rem;
       padding-right: 2rem;
       &_title {
         font-weight: 800;
@@ -67,12 +67,12 @@
     &-card.connected.bottom {
       &::after {
         bottom: 3rem;
-        border-bottom: 4px dotted rgba(var(--secondary-rgb), 0.2);
+        border-bottom: 4px dotted rgba(var(--secondary-rgb), 0.3);
       }
     }
     &-card.connected.top {
       &::after {
-        border-bottom: 4px dotted rgba(var(--orange-red-rgb), 0.2);
+        border-bottom: 4px dotted rgba(var(--orange-red-rgb), 0.3);
         top: 2rem;
       }
     }
